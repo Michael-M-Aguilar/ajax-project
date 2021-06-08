@@ -8,11 +8,70 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/85972900af.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
+  <div class="flex space-between">
+    <img src="images/wsb chad 2.png" alt="wsbLogo">
+    <h1>Top Cryptos Today</h1>
+    <img src="images/dogecoin 2.png" alt="doge">
+  </div>
   </header>
   <main>
+    <div class="container">
+      <div class="forTable">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Volume</th>
+              <th>Market Cap</th>
+              <th>Available Supply</th>
+              <th>Price Change 1H</th>
+              <th>Price Change 24H</th>
+              <th><i class="fas fa-info"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Bitcoin</td>
+              <td>$34,094.85</td>
+              <td class="mobileHidden">2,564,770,217,646</td>
+              <td class="mobileHidden">$632,968,284,644</td>
+              <td class="mobileHidden">18,728,618 BTC</td>
+              <td>0.85%</td>
+              <td class="mobileHidden">-9.45%</td>
+              <td><i class="fas fa-sticky-note"></i></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ethereum</td>
+              <td>$2501.71</td>
+              <td>1,289,005,875,729</td>
+              <td>$290,704,163,430.69</td>
+              <td>116,202,166 ETH</td>
+              <td>1.45%</td>
+              <td>-9.95%</td>
+              <td><i class="fas fa-sticky-note"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modalContainer">
+        <div class="modalContent">
+          <div class="text?">
+          </div>
+          <div class="buttons">
+            <button>Cancel</button>
+            <button>Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
