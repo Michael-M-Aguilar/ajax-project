@@ -39,6 +39,10 @@ th,
   padding-bottom: 10px;
 }
 
+.paddingForTable {
+  padding: 0 12px 0 12px;
+}
+
 .text-align-center {
   text-align: center;
 }
