@@ -7,7 +7,8 @@ thead {
   font-size: 23px;
 }
 
-td {
+td,
+.selector {
   background-color: #f3f1f1;
 }
 
@@ -36,4 +37,20 @@ th {
 
 .cancelButton {
   background-color: #f48d8d;
+}
+
+.backgroundBlue {
+  background-color: #b6e7ff;
+}
+
+.mobileChad {
+  width: 100px;
+  height: 90px;
+  align-self: flex-end;
+}
+
+.mobileDoge {
+  width: 100px;
+  height: 75px;
+  align-self: flex-end;
 }

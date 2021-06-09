@@ -17,14 +17,14 @@
 </head>
 <body>
   <header>
-  <div class="flex space-between">
+  <div class="flex space-between mobileHidden">
     <img src="images/wsb chad 2.png" alt="wsbLogo">
-    <h1>Top Cryptos Today</h1>
+    <h1 class="backgroundBlue">Top Cryptos Today</h1>
     <img src="images/dogecoin 2.png" alt="doge">
   </div>
   </header>
   <main>
-    <div class="container" data-view="list-page">
+    <div class="container mobileHidden" data-view="list-page">
       <div class="forTable">
         <table>
           <thead>
@@ -77,8 +77,25 @@
         </div>
       </div>
     </div>
-    <div class="container" data-view="mobile-list-page">
-
+    <div class="container mobileAppended" data-view="mobile-list-page">
+      <div class="mobileHeader flex justify-center">
+        <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
+        <h1 class="backgroundBlue">Top Cryptos Today</h1>
+        <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+      </div>
+      <div class="flex justify-center">
+        <div class="selector">
+          <img src="images/bitcoin.png" class="mobileLogo " alt="bitcoin">
+        </div>
+        <div class="selector">
+          <h3 class="letters">BTC</h3>
+          <h3 class="letters">Bitcoin</h3>
+        </div>
+        <div class="selector">
+          <h3 class="numbers">$34,094.85</h3>
+          <h3 class="numbers">-3.90%</h3>
+        </div>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
