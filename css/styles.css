@@ -1,0 +1,77 @@
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #c4c4c4;
+  font-size: 23px;
+}
+
+td,
+.selector {
+  background-color: #f3f1f1;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+td,
+th,
+.selector {
+  border: solid 1px black;
+}
+
+.numbers {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.padding-left {
+  padding-left: 50px;
+}
+
+.padding-bottom {
+  padding-bottom: 10px;
+}
+
+.paddingForTable {
+  padding: 0 12px 0 12px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.letters {
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+}
+
+.saveButton {
+  background-color: #6dfd8a;
+}
+
+.cancelButton {
+  background-color: #f48d8d;
+}
+
+.backgroundBlue {
+  background-color: #b6e7ff;
+}
+
+.mobileChad {
+  width: 100px;
+  height: 90px;
+  align-self: flex-end;
+}
+
+.mobileDoge {
+  width: 100px;
+  height: 75px;
+  align-self: flex-end;
+}

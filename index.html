@@ -8,11 +8,107 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/85972900af.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@800&family=Open+Sans+Condensed:wght@700&display=swap"
+  rel="stylesheet">
 </head>
 <body>
   <header>
+  <div class="flex justify-center hiddenInMobile">
+    <div>
+      <img src="images/wsb chad 2.png" alt="wsbLogo">
+    </div>
+    <div class="backgroundBlue">
+      <h1>Top Cryptos Today</h1>
+    </div>
+    <div>
+      <img src="images/dogecoin 2.png" alt="doge">
+    </div>
+  </div>
   </header>
   <main>
+    <div class="container hiddenInMobile" data-view="list-page">
+      <div class="forTable flex justify-center">
+        <table>
+          <thead>
+            <tr>
+              <th class="letters">Rank</th>
+              <th class="letters">Name</th>
+              <th class="letters">Price</th>
+              <th class="letters">24H Trading Volume</th>
+              <th class="letters">Market Cap</th>
+              <th class="letters">Price Change 1H</th>
+              <th class="letters">Price Change 24H</th>
+              <th class="letters">Price Change 7D</th>
+              <th><i class="fas fa-info"></i></th>
+            </tr>
+          </thead>
+          <tbody class="appended">
+            <!-- <tr>
+              <td class="numbers">1 <img src="images/bitcoin.png" class="logos" alt="bitcoin"></td>
+              <td class="letters">Bitcoin BTC</td>
+              <td class="numbers">$34,094.85</td>
+              <td class="numbers">2,564,770,217,646</td>
+              <td class="numbers">$632,968,284,644</td>
+              <td class="numbers">18,728,618 BTC</td>
+              <td class="numbers">0.85%</td>
+              <td class="numbers">-9.45%</td>
+              <td><i class="fas fa-sticky-note"></i></td>
+            </tr>
+            <tr>
+              <td class="numbers">2 <img src="images/Ethereum-Logo.wine.svg" class="ethereumLogo" alt="ethereum"></td>
+              <td class="letters">Ethereum ETH</td>
+              <td class="numbers">$2501.71</td>
+              <td class="numbers">1,289,005,875,729</td>
+              <td class="numbers">$290,704,163,430.69</td>
+              <td class="numbers">116,202,166 ETH</td>
+              <td class="numbers">1.45%</td>
+              <td class="numbers">-9.95%</td>
+              <td><i class="fas fa-sticky-note"></i></td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modalContainer">
+        <div class="modalContent">
+          <div class="text?">
+          </div>
+          <div class="buttons">
+            <!-- <button class="cancelButton">Cancel</button>
+            <button class="saveButton">Save</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container hiddenInDesktop mobileAppended" data-view="mobile-list-page">
+      <div class="mobileHeader flex justify-center">
+        <div>
+          <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
+        </div>
+        <div class="backgroundBlue">
+          <h1>Top Cryptos Today</h1>
+        </div>
+        <div>
+          <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+        </div>
+      </div>
+      <!-- <div class="flex justify-center">
+        <div class="selector">
+          <img src="images/bitcoin.png" class="mobileLogo " alt="bitcoin">
+        </div>
+        <div class="selector">
+          <h3 class="letters">BTC</h3>
+          <h3 class="letters">Bitcoin</h3>
+        </div>
+        <div class="selector">
+          <h3 class="numbers">$34,094.85</h3>
+          <h3 class="numbers">-3.90%</h3>
+        </div>
+      </div> -->
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
