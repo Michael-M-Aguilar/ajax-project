@@ -17,26 +17,32 @@
 </head>
 <body>
   <header>
-  <div class="flex space-between mobileHidden">
-    <img src="images/wsb chad 2.png" alt="wsbLogo">
-    <h1 class="backgroundBlue">Top Cryptos Today</h1>
-    <img src="images/dogecoin 2.png" alt="doge">
+  <div class="flex justify-center hiddenInMobile">
+    <div>
+      <img src="images/wsb chad 2.png" alt="wsbLogo">
+    </div>
+    <div class="backgroundBlue">
+      <h1>Top Cryptos Today</h1>
+    </div>
+    <div>
+      <img src="images/dogecoin 2.png" alt="doge">
+    </div>
   </div>
   </header>
   <main>
-    <div class="container mobileHidden" data-view="list-page">
-      <div class="forTable">
+    <div class="container hiddenInMobile" data-view="list-page">
+      <div class="forTable flex justify-center">
         <table>
           <thead>
             <tr>
               <th class="letters">Rank</th>
               <th class="letters">Name</th>
               <th class="letters">Price</th>
-              <th class="letters">Volume</th>
+              <th class="letters">24H Trading Volume</th>
               <th class="letters">Market Cap</th>
-              <th class="letters">Available Supply</th>
               <th class="letters">Price Change 1H</th>
               <th class="letters">Price Change 24H</th>
+              <th class="letters">Price Change 7D</th>
               <th><i class="fas fa-info"></i></th>
             </tr>
           </thead>
@@ -71,19 +77,25 @@
           <div class="text?">
           </div>
           <div class="buttons">
-            <button class="cancelButton">Cancel</button>
-            <button class="saveButton">Save</button>
+            <!-- <button class="cancelButton">Cancel</button>
+            <button class="saveButton">Save</button> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="container mobileAppended" data-view="mobile-list-page">
+    <div class="container hiddenInDesktop mobileAppended" data-view="mobile-list-page">
       <div class="mobileHeader flex justify-center">
-        <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
-        <h1 class="backgroundBlue">Top Cryptos Today</h1>
-        <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+        <div>
+          <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
+        </div>
+        <div class="backgroundBlue">
+          <h1>Top Cryptos Today</h1>
+        </div>
+        <div>
+          <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+        </div>
       </div>
-      <div class="flex justify-center">
+      <!-- <div class="flex justify-center">
         <div class="selector">
           <img src="images/bitcoin.png" class="mobileLogo " alt="bitcoin">
         </div>
@@ -95,7 +107,7 @@
           <h3 class="numbers">$34,094.85</h3>
           <h3 class="numbers">-3.90%</h3>
         </div>
-      </div>
+      </div> -->
     </div>
   </main>
   <script src="js/data.js"></script>
