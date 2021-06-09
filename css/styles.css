@@ -60,6 +60,24 @@ th,
   background-color: #f48d8d;
 }
 
+.button {
+  border-radius: 14px;
+  border: 0 solid;
+  width: 150px;
+  height: 40px;
+}
+
+.textButton {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 24px;
+}
+
+textarea {
+  resize: none;
+  width: 350px;
+  height: 90px;
+}
+
 .backgroundBlue {
   background-color: #b6e7ff;
 }
