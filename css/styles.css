@@ -1,7 +1,39 @@
+table {
+  border-collapse: collapse;
+}
+
 thead {
   background-color: #c4c4c4;
+  font-size: 23px;
 }
 
 td {
   background-color: #f3f1f1;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+td,
+th {
+  border: solid 1px black;
+}
+
+.numbers {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
+}
+
+.letters {
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+}
+
+.saveButton {
+  background-color: #6dfd8a;
+}
+
+.cancelButton {
+  background-color: #f48d8d;
 }

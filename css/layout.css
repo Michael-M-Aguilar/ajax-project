@@ -17,7 +17,21 @@
 }
 
 header {
+  max-width: 1020px;
+}
+
+main {
   max-width: 920px;
+}
+
+.logos {
+  max-width: 49px;
+  max-height: 59px;
+}
+
+.ethereumLogo {
+  width: 50px;
+  height: 75px;
 }
 
 @media screen and (min-width: 768px) {
@@ -26,7 +40,7 @@ header {
   }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   thead,
   .mobileHidden {
     display: none;
