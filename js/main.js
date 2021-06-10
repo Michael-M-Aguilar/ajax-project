@@ -34,7 +34,7 @@ function renderElements(element) {
   tdEight.textContent = element.priceChange1w + '%';
   var tdNine = document.createElement('td');
   var tdNineSticky = document.createElement('i');
-  tdNineSticky.setAttribute('class', 'fas fa-sticky-note paddingForTable');
+  tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
 
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
@@ -49,7 +49,6 @@ function renderElements(element) {
   tdNine.appendChild(tdNineSticky);
   return trAppended;
 }
-
 // Function to create Mobile DOM Tree
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
@@ -129,4 +128,18 @@ window.addEventListener('DOMContentLoaded', function (event) {
 // When the window loads, will load the mobileCoinStatRequest function
 window.addEventListener('DOMContentLoaded', function (event) {
   mobileCoinStatRequest();
+});
+
+var $toggleModalOn = document.querySelector('.toggleModalOn');
+var $modalContainerOff = document.querySelector('.modalContainerOff');
+// Creating event listener for the sticky note click.
+$toggleModalOn.addEventListener('click', function (event) {
+  $modalContainerOff.className = 'modalContainerOn';
+});
+
+var $cancelModalButton = document.querySelector('.cancelButton');
+var $modalContainerOn = document.querySelector('.modalContainerOn');
+// Create addEventListener of Cancel Button
+$cancelModalButton.addEventListener('click', function (event) {
+  $modalContainerOn.className = 'modalContainerOff';
 });
