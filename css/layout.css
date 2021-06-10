@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -21,33 +25,32 @@
   max-height: 59px;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    width: 500px;
+  }
+
+  /* To show the mobile version on Chrome. */
+
+  /* .hiddenInDesktop {
+    display: none;
+  } */
+}
+
+/* Mobile Related */
 .mobileLogo {
   height: 90px;
   width: 90px;
 }
-
-/* .ethereumLogo {
-  width: 50px;
-  height: 75px;
-} */
 
 .mobileSelector {
   width: 100%;
   height: 100%;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    width: 500px;
-  }
-
-  .hiddenInDesktop {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 768px) {
   thead,
+  /* To hide the desktop List.*/
   .hiddenInMobile {
     display: none;
   }
@@ -55,4 +58,26 @@
   .container {
     min-width: 520px;
   }
+}
+
+.modalContainerOn {
+  top: 0;
+  left: 0;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* .modalContainerOff {
+  display: none;
+} */
+
+.modalContent {
+  position: fixed;
+  top: 40%;
+  left: 25%;
+  background-color: white;
+  width: 50%;
+  height: 34%;
 }

@@ -73,17 +73,20 @@
           </tbody>
         </table>
       </div>
-      <div class="modalContainer">
+      <div class="modalContainerOn">
         <div class="modalContent">
-          <div class="text?">
-          </div>
-          <div class="textAreaDiv">
-            <label for="notes"></label>
-            <textarea id="notes" name="notes" class="notes" optional></textarea>
-          </div>
-          <div class="buttons">
-            <button class="cancelButton button textButton">CANCEL</button>
-            <button class="saveButton button textButton">SAVE</button>
+          <div class="flex flex-column">
+            <div class="modalText">
+              <h3 class="text-align-center">Insert private note below.</h3>
+            </div>
+            <div class="textAreaDiv align-center">
+              <label for="notes"></label>
+              <textarea id="notes" name="notes" class="notes" optional></textarea>
+            </div>
+            <div class="buttons align-center">
+              <button class="cancelButton button textButton">CANCEL</button>
+              <button class="saveButton button textButton">SAVE</button>
+            </div>
           </div>
         </div>
       </div>
@@ -113,6 +116,18 @@
           <h3 class="numbers">-3.90%</h3>
         </div>
       </div> -->
+    </div>
+    <div class="mobileModalContainerOff">
+      <div class="mobileModalContent flex flex-column">
+        <div class="textAreaDiv align-center">
+          <label for="notes"></label>
+          <textarea id="notess" name="notes" class="notes" optional></textarea>
+        </div>
+        <div class="buttons align-center">
+          <button class="cancelButton button textButton">CANCEL</button>
+          <button class="saveButton button textButton">SAVE</button>
+        </div>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
