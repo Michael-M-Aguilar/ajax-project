@@ -5,8 +5,9 @@ var $toggleModalOn = document.querySelector('.toggleModalOn');
 var $modal = document.getElementById('modal');
 var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // var $save = document.getElementById('saveDesktopModal')
-// var $desktopNotes = document.querySelector('#desktopNotes');
-// var $desktopForm = document.querySelector('#desktopForm')
+var $desktopNotes = document.querySelector('#desktopNotes');
+var $desktopForm = document.querySelector('#desktopForm');
+// var $bitcoin = document.
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -29,7 +30,8 @@ function renderElements(element) {
   tdFive.setAttribute('class', 'numbers text-align-center paddingForTable');
   tdFive.textContent = '$' + Math.ceil(element.marketCap * 100) / 100;
   var tdSix = document.createElement('td');
-  tdSix.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdSix.setAttribute('class', 'numbers text-align-center paddingForTable nodeList');
+  tdSix.setAttribute('id', 'nodeList');
   tdSix.textContent = element.priceChange1h + '%';
   var tdSeven = document.createElement('td');
   tdSeven.setAttribute('class', 'numbers text-align-center paddingForTable');
@@ -40,6 +42,7 @@ function renderElements(element) {
   var tdNine = document.createElement('td');
   var tdNineSticky = document.createElement('i');
   tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
+  tdNineSticky.setAttribute('id', element.id);
 
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
@@ -100,12 +103,12 @@ function coinstatRequest() {
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
-      if (xhr.response.coins[i].priceChange1h > 0) {
-        xhr.response.coins[i].priceChange1h.setAttribute('class', 'tendies');
-      } else {
-        xhr.response.coins[i].priceChange1h.className = 'losses';
-        // console.log('hello')
-      }
+      // if (xhr.response.coins[i].priceChange1h > 0) {
+      //   xhr.response.coins[i].priceChange1h.className = 'tendies'
+      // } else {
+      //   xhr.response.coins[i].priceChange1h.className = 'losses';
+      //   console.log('hello')
+      // }
       // console.log(xhr.response.coins[i].priceChange1h)
     }
   });
@@ -128,6 +131,18 @@ function mobileCoinStatRequest() {
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
   coinstatRequest();
+  // console.log('after function runs;')
+  // var trial = document.querySelectorAll('#nodeList')
+  // console.log('after var declaration')
+  // console.log(trial)
+  // for(var i = 0; i < trial.length; i++) {
+  //   console.log('for loop worked!')
+  //   if(parseInt(trial[i]) > 0) {
+  //     trial[i].className = 'tendies'
+  //   } else {
+  //     console.log('broken')
+  //   }
+  // }
 });
 // When the window loads, will load the mobileCoinStatRequest function
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -136,22 +151,45 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 // Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
+  // var coinAttribute = event.target.getAttribute('id')
   if (event.target.tagName === 'I') {
     $modal.className = 'modalContainerOn';
+    data.currentCoin = event.target.getAttribute('id');
   }
 });
 // Create addEventListener of Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
+  $desktopForm.reset();
   $modal.className = 'modalContainerOff';
 });
 // Desktop Submit?
-// $save.addEventListener('click', function(event){
-//   event.preventDefault();
-//   var formData = {};
-//   formData.notes = $desktopNotes.value;
-//   data.nextEntryId++
-//   data.entries.unshift(formData);
-//   console.log('Value of formData',formData);
-//   console.log('index 0', data.entries[0])
-//   console.log('value of all data.entries', data.entries)
-// })
+$desktopForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var formData = {
+    note: $desktopNotes.value,
+    noteID: data.nextEntryId,
+    coinID: data.currentCoin
+  };
+  if (formData.note !== '') {
+    data.entries.unshift(formData);
+    data.nextEntryId++;
+  }
+  // console.log('value of formData', formData)
+  // console.log('coindID upon submission', formData.coinID)
+  // console.log('nextEntryId', data.nextEntryId)
+  // console.log('Value of note', formData.note)
+  // console.log('Value of ID', formData.noteID)
+  // console.log('event target:', event.target)
+  // console.log('Value of Coin:', data.currentCoin )
+  // if (data.currentCoin = '') {
+  //   data.nextEntryId++
+  // }
+  // console.log('Value of formData',formData);
+  // console.log('index 0', data.entries[0])
+  // console.log('value of all data.entries', data.entries)
+});
+// var trial = document.querySelectorAll('#nodeList')
+
+// function turnGreenOrRed() {
+//   if()
+// }

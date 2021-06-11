@@ -2,7 +2,8 @@
 var data = {
   entries: [],
   editing: null,
-  nextEntryId: 1
+  nextEntryId: 1,
+  currentCoin: ''
 };
 
 var previousDataJSON = localStorage.getItem('data');

@@ -75,10 +75,17 @@
 }
 
 .modalContent {
-  position: fixed;
+  position: relative;
   top: 40%;
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   width: 50%;
   height: 34%;
+}
+
+.trial {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
