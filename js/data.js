@@ -1,16 +1,16 @@
 /* exported data */
 var data = {
-  view: '',
   entries: [],
-  editing: null
+  editing: null,
+  nextEntryId: 1
 };
 
-var toJSON = localStorage.getItem('local-storage');
-if (toJSON !== null) {
-  data = JSON.parse(toJSON);
+var previousDataJSON = localStorage.getItem('data');
+if (previousDataJSON !== null) {
+  data = JSON.parse(previousDataJSON);
 }
 
 window.addEventListener('beforeunload', function (event) {
-  var toJSONOld = JSON.stringify(data);
-  localStorage.setItem('local-storage', toJSONOld);
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('data', dataJSON);
 });

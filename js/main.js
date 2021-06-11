@@ -1,7 +1,12 @@
 // Declare a variable to append my DOM tree too.
 var $appended = document.querySelector('.appended');
 var $mobileAppended = document.querySelector('.mobileAppended');
-
+var $toggleModalOn = document.querySelector('.toggleModalOn');
+var $modal = document.getElementById('modal');
+var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
+// var $save = document.getElementById('saveDesktopModal')
+// var $desktopNotes = document.querySelector('#desktopNotes');
+// var $desktopForm = document.querySelector('#desktopForm')
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -92,13 +97,16 @@ function coinstatRequest() {
   xhr.setRequestHeader('token', 'abc123');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    // console.log('What is received:' + xhr.response);
-    // console.log('An array of what is received', xhr.response.coins);
-    // console.log('The Index 0 of this Array: ', xhr.response.coins[0]);
-    // console.log('The current price of Index 0: ' + xhr.response.coins[0].price);
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
+      if (xhr.response.coins[i].priceChange1h > 0) {
+        xhr.response.coins[i].priceChange1h.setAttribute('class', 'tendies');
+      } else {
+        xhr.response.coins[i].priceChange1h.className = 'losses';
+        // console.log('hello')
+      }
+      // console.log(xhr.response.coins[i].priceChange1h)
     }
   });
   xhr.send();
@@ -110,10 +118,6 @@ function mobileCoinStatRequest() {
   xhrm.setRequestHeader('token', 'abc123');
   xhrm.responseType = 'json';
   xhrm.addEventListener('load', function () {
-    // console.log('What is received:' + xhrm.response);
-    // console.log('An array of what is received', xhrm.response.coins);
-    // console.log('The Index 0 of this Array: ', xhrm.response.coins[0]);
-    // console.log('The current price of Index 0: ' + xhrm.response.coins[0].price);
     for (var i = 0; i < xhrm.response.coins.length; i++) {
       var test = mobileRenderElements(xhrm.response.coins[i]);
       $mobileAppended.append(test);
@@ -130,19 +134,24 @@ window.addEventListener('DOMContentLoaded', function (event) {
   mobileCoinStatRequest();
 });
 
-var $toggleModalOn = document.querySelector('.toggleModalOn');
-var $modal = document.getElementById('modal');
-// Creating event listener for the sticky note click.
+// Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
-  // console.log(event.target.className)
   if (event.target.tagName === 'I') {
     $modal.className = 'modalContainerOn';
   }
-  // console.log(event.target.tagName === 'I')
 });
-
-var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // Create addEventListener of Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
   $modal.className = 'modalContainerOff';
 });
+// Desktop Submit?
+// $save.addEventListener('click', function(event){
+//   event.preventDefault();
+//   var formData = {};
+//   formData.notes = $desktopNotes.value;
+//   data.nextEntryId++
+//   data.entries.unshift(formData);
+//   console.log('Value of formData',formData);
+//   console.log('index 0', data.entries[0])
+//   console.log('value of all data.entries', data.entries)
+// })

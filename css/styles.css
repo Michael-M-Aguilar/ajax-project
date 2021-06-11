@@ -95,3 +95,12 @@ textarea {
   height: 75px;
   align-self: flex-end;
 }
+
+/* Red/Green Feature on Numbers */
+.tendies {
+  color: #00b424;
+}
+
+.losses {
+  color: #ff5964;
+}
