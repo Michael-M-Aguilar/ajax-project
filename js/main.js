@@ -131,15 +131,18 @@ window.addEventListener('DOMContentLoaded', function (event) {
 });
 
 var $toggleModalOn = document.querySelector('.toggleModalOn');
-var $modalContainerOff = document.querySelector('.modalContainerOff');
+var $modal = document.getElementById('modal');
 // Creating event listener for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
-  $modalContainerOff.className = 'modalContainerOn';
+  // console.log(event.target.className)
+  if (event.target.tagName === 'I') {
+    $modal.className = 'modalContainerOn';
+  }
+  // console.log(event.target.tagName === 'I')
 });
 
-var $cancelModalButton = document.querySelector('.cancelButton');
-var $modalContainerOn = document.querySelector('.modalContainerOn');
+var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // Create addEventListener of Cancel Button
-$cancelModalButton.addEventListener('click', function (event) {
-  $modalContainerOn.className = 'modalContainerOff';
+$cancelDesktopButton.addEventListener('click', function (event) {
+  $modal.className = 'modalContainerOff';
 });

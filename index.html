@@ -51,7 +51,7 @@
           </tbody>
         </table>
       </div>
-      <div class="modalContainerOff">
+      <div id="modal" class="modalContainerOff">
         <div class="modalContent">
           <div class="flex flex-column">
             <div class="modalText">
@@ -62,8 +62,8 @@
               <textarea id="desktopNotes" name="desktopNotes" class="notes" optional></textarea>
             </div>
             <div class="buttons align-center">
-              <button class="cancelButton button textButton">CANCEL</button>
-              <button class="saveButton button textButton">SAVE</button>
+              <button id="cancelDesktopModal" class="cancelButton cancelDesktopButton button textButton">CANCEL</button>
+              <button class="saveButton saveDesktopButton button textButton">SAVE</button>
             </div>
           </div>
         </div>
@@ -84,13 +84,13 @@
     </div>
     <div class="mobileModalContainerOff">
       <div class="mobileModalContent flex flex-column">
-        <div class="textAreaDiv align-center">
+        <div class="textAreaDiv align-center hiddenInDesktop">
           <label for="mobileNotes"></label>
           <textarea id="mobileNotes" name="mobileNotes" class="notes" optional></textarea>
         </div>
-        <div class="buttons align-center">
-          <button class="cancelButton button textButton">CANCEL</button>
-          <button class="saveButton button textButton">SAVE</button>
+        <div class="buttons align-center hiddenInDesktop">
+          <button class="cancelButton cancelMobileButton button textButton">CANCEL</button>
+          <button class="saveButton saveMobileButton button textButton">SAVE</button>
         </div>
       </div>
     </div>

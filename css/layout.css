@@ -32,9 +32,9 @@
 
   /* To show the mobile version on Chrome. */
 
-  /* .hiddenInDesktop {
+  .hiddenInDesktop {
     display: none;
-  } */
+  }
 }
 
 /* Mobile Related */
