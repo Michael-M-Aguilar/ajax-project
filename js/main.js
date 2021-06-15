@@ -7,7 +7,6 @@ var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // var $save = document.getElementById('saveDesktopModal')
 var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
-// var $bitcoin = document.
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -43,6 +42,25 @@ function renderElements(element) {
   var tdNineSticky = document.createElement('i');
   tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
   tdNineSticky.setAttribute('id', element.id);
+  tdNineSticky.setAttribute('coin-name', element.id);
+
+  // if (element.priceChange1h > 0) {
+  //   tdSix.className = 'tendies';
+  // } else {
+  //   tdSix.className = 'losses';
+  // }
+
+  // if (element.priceChange1d > 0) {
+  //   tdSeven.className = 'tendies';
+  // } else {
+  //   tdSeven.className = 'losses';
+  // }
+
+  // if (element.priceChange1w > 0) {
+  //   tdEight.className = 'tendies';
+  // } else {
+  //   tdEight.className = 'losses';
+  // }
 
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
@@ -93,6 +111,36 @@ function mobileRenderElements(mobileElement) {
   divFour.appendChild(h3Four);
   return divOne;
 }
+// FOR FUTURE USEEEEE!!!!!
+// Function to create data entries for coins
+// function createCoinEntries() {
+// 1) Create Data Object that has a list of all the coins we have.
+// push each coin object into data.entries arr
+// }
+
+// Function to update data entry
+
+// function viewCoinNoteEntry() {
+// need to show the current note's content
+// check data.entries[i].coin === coin attribute from DOM tree.
+// if ===, show data.entries[i].textContent (append to DOM)
+
+// }
+
+// function updateCoinNoteEntry() {
+
+// Compare the coin vs attribute of the clicked === data.coinId to update correct entry.
+
+// for loop data.entries
+// check data.entries[i].coin === coin attribute from DOM tree.
+// if ===, update textContent
+// data.entries[0].textContent = "new note information"
+
+// TL;DR
+// So when you click on the note, you need to loop through the entries and find the one with the proper coinId
+// then assign that note to the value property of the text area
+
+// }
 // Function to make our API request, and then append our DOM tree to our targeted position.
 function coinstatRequest() {
   var xhr = new XMLHttpRequest();
@@ -103,13 +151,7 @@ function coinstatRequest() {
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
-      // if (xhr.response.coins[i].priceChange1h > 0) {
-      //   xhr.response.coins[i].priceChange1h.className = 'tendies'
-      // } else {
-      //   xhr.response.coins[i].priceChange1h.className = 'losses';
-      //   console.log('hello')
-      // }
-      // console.log(xhr.response.coins[i].priceChange1h)
+      // console.log(xhr.response);
     }
   });
   xhr.send();
@@ -151,7 +193,11 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 // Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
-  // var coinAttribute = event.target.getAttribute('id')
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.currentCoin === data.entries[i].coinID) {
+      data.entries[i].note = $desktopNotes.value;
+    }
+  }
   if (event.target.tagName === 'I') {
     $modal.className = 'modalContainerOn';
     data.currentCoin = event.target.getAttribute('id');
@@ -167,29 +213,20 @@ $desktopForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
     note: $desktopNotes.value,
-    noteID: data.nextEntryId,
+    // noteID: data.nextEntryId,
     coinID: data.currentCoin
   };
   if (formData.note !== '') {
     data.entries.unshift(formData);
     data.nextEntryId++;
   }
-  // console.log('value of formData', formData)
-  // console.log('coindID upon submission', formData.coinID)
-  // console.log('nextEntryId', data.nextEntryId)
-  // console.log('Value of note', formData.note)
-  // console.log('Value of ID', formData.noteID)
-  // console.log('event target:', event.target)
-  // console.log('Value of Coin:', data.currentCoin )
-  // if (data.currentCoin = '') {
-  //   data.nextEntryId++
-  // }
-  // console.log('Value of formData',formData);
-  // console.log('index 0', data.entries[0])
-  // console.log('value of all data.entries', data.entries)
-});
-// var trial = document.querySelectorAll('#nodeList')
 
-// function turnGreenOrRed() {
-//   if()
-// }
+  // if (data.currentCoin !== '') {
+  //   console.log('value of formData:', formData);
+  //   console.log('coindID upon submission:', formData.coinID);
+  //   console.log('Value of note:', formData.note);
+  //   console.log('Value of Coin:', data.currentCoin);
+  //   console.log('value of all data.entries:', data.entries);
+  //   console.log('index 0:', data.entries[0]);
+  // }
+});
