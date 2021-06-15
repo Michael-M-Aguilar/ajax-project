@@ -99,9 +99,15 @@ textarea {
 
 /* Red/Green Feature on Numbers */
 .tendies {
+  text-align: center;
   color: #00b424;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
 }
 
 .losses {
+  text-align: center;
   color: #ff5964;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
 }

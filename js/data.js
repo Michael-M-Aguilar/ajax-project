@@ -1,8 +1,38 @@
 /* exported data */
 var data = {
-  entries: []
-  // currentCoin: ''
+  entries: [
+    {
+      coin: 'bitcoin',
+      textContent: ' '
+    },
+    {
+      coin: 'ethereum',
+      textContent: ' '
+    },
+    {
+      coin: 'tether',
+      textContent: ' '
+    },
+    {
+      coin: 'binance-coin',
+      textContent: ' '
+    },
+    {
+      coin: 'cardano',
+      textContent: ' '
+    },
+    {
+      coin: 'dogecoin',
+      textContent: ' '
+    },
+    {
+      coin: 'XRP',
+      textContent: ' '
+    }
+  ]
 };
+  // ^^^ hardcoded objects
+  // dynamically add objects from API in main JS, function that runs on API Success
 
 var previousDataJSON = localStorage.getItem('data');
 if (previousDataJSON !== null) {
@@ -14,8 +44,7 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data', dataJSON);
 });
 
-// 1) Create Data Object that has a list of all the coins we have.
-// Compare the coin vs attribute of the clicked === data.coinId
-// Update correct entry.
-// So when you click on the note, you need to loop through the entries and find the one with the proper coinId
-// then assign that note to the value property of the text area
+// STEPS!!!!
+// 1. onAPI success, call createCoinEntries()
+// 2. on editIcon click, call viewCoinNoteEntry()
+// 3. on save,  call updateCoinEntry()
