@@ -7,6 +7,10 @@ var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // var $save = document.getElementById('saveDesktopModal')
 var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
+var $iClass = document.getElementsByTagName('I');
+// var attribute = trial.getAttribute('id');
+// var $targetCoin = $iClass.getAttribute('id');
+// var $idQuery = document.getElementById('bitcoin');
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -39,10 +43,10 @@ function renderElements(element) {
   tdEight.setAttribute('class', 'numbers text-align-center paddingForTable');
   tdEight.textContent = element.priceChange1w + '%';
   var tdNine = document.createElement('td');
+  tdNine.setAttribute('id', element.id);
   var tdNineSticky = document.createElement('i');
   tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
   tdNineSticky.setAttribute('id', element.id);
-  tdNineSticky.setAttribute('coin-name', element.id);
   // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
   // if (element.priceChange1h > 0 && element.priceChange1d > 0 && element.priceChange1w > 0) {
   //   tdSix.className = 'tendies';
@@ -67,6 +71,63 @@ function renderElements(element) {
   tdNine.appendChild(tdNineSticky);
   return trAppended;
 }
+// FOR FUTURE USE!
+// Function to create data entries for coins
+// function createCoinEntries() {
+// 1) Create Data Object that has a list of all the coins we have.
+// push each coin object into data.entries arr
+// }
+
+// Function to update data entry
+
+// function viewCoinNoteEntry() {
+// // need to show the current note's content
+//   for (var i = 0; i < data.entries.length; i++) {
+//     // check data.entries[i].coin === coin attribute from DOM tree.
+//     for (var j = 1; j < $iClass.length; j++) {
+//       console.log('value of $iClass:', $iClass[i].getAttribute('id'));
+//       if (data.entries[i].coin === $iClass[i].getAttribute('id')) {
+//         // if ===, show data.entries[i].textContent (append to DOM)
+//         data.entries[i].textContent = $desktopNotes.value;
+//         console.log('desktopNotes Value:', $desktopNotes.value);
+//       }
+//     }
+//   }
+// }
+
+// function updateCoinNoteEntry() {
+// // Compare the coin vs attribute of the clicked === data.coinId to update correct entry.
+
+// // for loop data.entries
+// // check data.entries[i].coin === coin attribute from DOM tree.
+// // if ===, update textContent
+// // data.entries[0].textContent = "new note information"
+
+// // TL;DR
+// // So when you click on the note, you need to loop through the entries and find the one with the proper coinId
+// // then assign that note to the value property of the text area
+
+// }
+
+// Function to make our API request, and then append our DOM tree to our targeted position.
+function coinstatRequest() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
+  xhr.setRequestHeader('token', 'abc123');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.coins.length; i++) {
+      var test = renderElements(xhr.response.coins[i]);
+      $appended.append(test);
+    }
+    // console.log(xhr.response);
+  });
+  xhr.send();
+}
+// When the window loads, will load the coinstatRequest function.
+window.addEventListener('DOMContentLoaded', function (event) {
+  coinstatRequest();
+});
 // Function to create Mobile DOM Tree
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
@@ -103,57 +164,6 @@ function mobileRenderElements(mobileElement) {
   divFour.appendChild(h3Four);
   return divOne;
 }
-// FOR FUTURE USEEEEE!!!!!
-// Function to create data entries for coins
-// function createCoinEntries() {
-// 1) Create Data Object that has a list of all the coins we have.
-// push each coin object into data.entries arr
-// }
-
-// Function to update data entry
-
-// function viewCoinNoteEntry() {
-// // need to show the current note's content
-// for(var i = 0; i < data.entries.length; i++) {
-// // check data.entries[i].coin === coin attribute from DOM tree.
-//   if (data.entries[i].coin === ) {
-//     data.entries[i].textContent =
-//   }
-//   // if ===, show data.entries[i].textContent (append to DOM)
-//   }
-// }
-
-// function updateCoinNoteEntry() {
-// // Compare the coin vs attribute of the clicked === data.coinId to update correct entry.
-
-// // for loop data.entries
-// // check data.entries[i].coin === coin attribute from DOM tree.
-// // if ===, update textContent
-// // data.entries[0].textContent = "new note information"
-
-// // TL;DR
-// // So when you click on the note, you need to loop through the entries and find the one with the proper coinId
-// // then assign that note to the value property of the text area
-
-// }
-
-// Function to make our API request, and then append our DOM tree to our targeted position.
-var responseHolder = [];
-function coinstatRequest() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
-  xhr.setRequestHeader('token', 'abc123');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    for (var i = 0; i < xhr.response.coins.length; i++) {
-      var test = renderElements(xhr.response.coins[i]);
-      $appended.append(test);
-      responseHolder.unshift(xhr.response);
-    }
-    // console.log(xhr.response);
-  });
-  xhr.send();
-}
 // Function to make the API request, and append our DOM tree for mobile only.
 function mobileCoinStatRequest() {
   var xhrm = new XMLHttpRequest();
@@ -168,22 +178,6 @@ function mobileCoinStatRequest() {
   });
   xhrm.send();
 }
-// When the window loads, will load the coinstatRequest function.
-window.addEventListener('DOMContentLoaded', function (event) {
-  coinstatRequest();
-  // console.log('after function runs;')
-  // var trial = document.querySelectorAll('#nodeList')
-  // console.log('after var declaration')
-  // console.log(trial)
-  // for(var i = 0; i < trial.length; i++) {
-  //   console.log('for loop worked!')
-  //   if(parseInt(trial[i]) > 0) {
-  //     trial[i].className = 'tendies'
-  //   } else {
-  //     console.log('broken')
-  //   }
-  // }
-});
 // When the window loads, will load the mobileCoinStatRequest function
 window.addEventListener('DOMContentLoaded', function (event) {
   mobileCoinStatRequest();
@@ -191,31 +185,35 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 // Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
-  // for (var i = 0; i < data.entries.length; i++) {
-  //   if (data.currentCoin === data.entries[i].coinID) {
-  //     data.entries[i].note = $desktopNotes.value;
-  //   }
-  // }
   if (event.target.tagName === 'I') {
     $modal.className = 'modalContainerOn';
     data.currentCoin = event.target.getAttribute('id');
+    for (var i = 0; i < data.entries.length; i++) {
+      for (var j = 1; j < $iClass.length - 1; j++) {
+        if (data.entries[i].currentCoin === $iClass[j].getAttribute('id')) {
+          $desktopNotes.value = data.entries[i].note;
+        }
+      }
+    }
   }
 });
+
 // Create addEventListener of Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
-  $desktopForm.reset();
   $modal.className = 'modalContainerOff';
 });
-// Desktop Submit?
+
+// Desktop Submit Listener.
 $desktopForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
     note: $desktopNotes.value,
-    // noteID: data.nextEntryId,
     coinID: data.currentCoin
   };
+  // console.log(formData.note);
+  // console.log(event.target.getAttribute('id'));
   if (formData.note !== '') {
     data.entries.unshift(formData);
-    data.nextEntryId++;
   }
+  $modal.className = 'modalContainerOff';
 });
