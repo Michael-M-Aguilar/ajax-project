@@ -9,9 +9,10 @@ var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 var $cancelMobileButton = document.querySelector('#cancelMobileModal');
 var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
-var $mobileForm = document.querySelector('#mobileForm');
 var $mobileNotes = document.querySelector('#mobileNotes');
+var $mobileForm = document.querySelector('#mobileForm');
 
+// THE START OF DESKTOP FUNCTIONS
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -115,7 +116,9 @@ $desktopForm.addEventListener('submit', function (event) {
   $modal.className = 'modalContainerOff';
   document.querySelector('#desktopForm').reset();
 });
+// END OF DESKTOP FUNCTIONS
 
+// NEXT FUNCTIONS ARE FOR MOBILE ONLY
 // Function to create Mobile DOM Tree
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
@@ -200,12 +203,14 @@ $toggleMobileModal.addEventListener('click', function (event) {
 $mobileForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
-    note: $desktopNotes.value,
+    note: $mobileNotes.value,
     coinID: data.currentCoin
   };
   if (formData.note !== '') {
     data.entries.push(formData);
   }
   $mobileModal.className = 'mobileModalContainerOff';
-  document.querySelector('#mobileForm').reset();
+  // document.querySelector('#mobileForm').reset();
 });
+
+// END OF MOBILE ONLY FUNCTIONS
