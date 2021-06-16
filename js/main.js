@@ -2,15 +2,16 @@
 var $appended = document.querySelector('.appended');
 var $mobileAppended = document.querySelector('.mobileAppended');
 var $toggleModalOn = document.querySelector('.toggleModalOn');
+var $toggleMobileModal = document.querySelector('.toggleMobileModalOn');
 var $modal = document.getElementById('modal');
+var $mobileModal = document.getElementById('mobileModal');
 var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
-// var $save = document.getElementById('saveDesktopModal')
+var $cancelMobileButton = document.querySelector('#cancelMobileModal');
 var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
-// var $iClass = document.getElementsByTagName('I');
-// var attribute = trial.getAttribute('id');
-// var $targetCoin = $iClass.getAttribute('id');
-// var $idQuery = document.getElementById('bitcoin');
+var $mobileForm = document.querySelector('#mobileForm');
+var $mobileNotes = document.querySelector('#mobileNotes');
+
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
@@ -47,16 +48,6 @@ function renderElements(element) {
   var tdNineSticky = document.createElement('i');
   tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
   tdNineSticky.setAttribute('id', element.id);
-  // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
-  // if (element.priceChange1h > 0 && element.priceChange1d > 0 && element.priceChange1w > 0) {
-  //   tdSix.className = 'tendies';
-  //   tdSeven.className = 'tendies';
-  //   tdEight.className = 'tendies';
-  // } else {
-  //   tdSix.className = 'losses';
-  //   tdSeven.className = 'losses';
-  //   tdEight.className = 'losses';
-  // }
 
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
@@ -71,43 +62,6 @@ function renderElements(element) {
   tdNine.appendChild(tdNineSticky);
   return trAppended;
 }
-// FOR FUTURE USE!
-// Function to create data entries for coins
-// function createCoinEntries() {
-// 1) Create Data Object that has a list of all the coins we have.
-// push each coin object into data.entries arr
-// }
-
-// Function to update data entry
-
-// function viewCoinNoteEntry() {
-// // need to show the current note's content
-//   for (var i = 0; i < data.entries.length; i++) {
-//     // check data.entries[i].coin === coin attribute from DOM tree.
-//     for (var j = 1; j < $iClass.length; j++) {
-//       console.log('value of $iClass:', $iClass[i].getAttribute('id'));
-//       if (data.entries[i].coin === $iClass[i].getAttribute('id')) {
-//         // if ===, show data.entries[i].textContent (append to DOM)
-//         data.entries[i].textContent = $desktopNotes.value;
-//         console.log('desktopNotes Value:', $desktopNotes.value);
-//       }
-//     }
-//   }
-// }
-
-// function updateCoinNoteEntry() {
-// // Compare the coin vs attribute of the clicked === data.coinId to update correct entry.
-
-// // for loop data.entries
-// // check data.entries[i].coin === coin attribute from DOM tree.
-// // if ===, update textContent
-// // data.entries[0].textContent = "new note information"
-
-// // TL;DR
-// // So when you click on the note, you need to loop through the entries and find the one with the proper coinId
-// // then assign that note to the value property of the text area
-
-// }
 
 // Function to make our API request, and then append our DOM tree to our targeted position.
 function coinstatRequest() {
@@ -120,14 +74,48 @@ function coinstatRequest() {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
     }
-    // console.log(xhr.response);
   });
   xhr.send();
 }
+
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
   coinstatRequest();
 });
+
+// Create addEventListener of Desktop Cancel Button
+$cancelDesktopButton.addEventListener('click', function (event) {
+  $modal.className = 'modalContainerOff';
+  document.querySelector('#desktopForm').reset();
+});
+
+// Create addEventListener  for the sticky note click.
+$toggleModalOn.addEventListener('click', function (event) {
+  if (event.target.tagName === 'I') {
+    $modal.className = 'mobileModalContainerOn';
+    data.currentCoin = event.target.getAttribute('id');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.currentCoin === data.entries[i].coinID) {
+        $desktopNotes.value = data.entries[i].note;
+      }
+    }
+  }
+});
+
+// Desktop Submit Listener.
+$desktopForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var formData = {
+    note: $desktopNotes.value,
+    coinID: data.currentCoin
+  };
+  if (formData.note !== '') {
+    data.entries.push(formData);
+  }
+  $modal.className = 'modalContainerOff';
+  document.querySelector('#desktopForm').reset();
+});
+
 // Function to create Mobile DOM Tree
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
@@ -153,6 +141,9 @@ function mobileRenderElements(mobileElement) {
   var h3Four = document.createElement('h3');
   h3Four.setAttribute('class', 'numbers');
   h3Four.textContent = mobileElement.priceChange1d + '%';
+  var tdSticky = document.createElement('i');
+  tdSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
+  tdSticky.setAttribute('id', mobileElement.id);
 
   divOne.appendChild(divTwo);
   divTwo.appendChild(imgOne);
@@ -162,8 +153,10 @@ function mobileRenderElements(mobileElement) {
   divOne.appendChild(divFour);
   divFour.appendChild(h3Three);
   divFour.appendChild(h3Four);
+  divFour.appendChild(tdSticky);
   return divOne;
 }
+
 // Function to make the API request, and append our DOM tree for mobile only.
 function mobileCoinStatRequest() {
   var xhrm = new XMLHttpRequest();
@@ -178,52 +171,41 @@ function mobileCoinStatRequest() {
   });
   xhrm.send();
 }
+
 // When the window loads, will load the mobileCoinStatRequest function
 window.addEventListener('DOMContentLoaded', function (event) {
   mobileCoinStatRequest();
 });
 
-// Create addEventListener  for the sticky note click.
-$toggleModalOn.addEventListener('click', function (event) {
+// Create addEventListener of Mobile Cancel Button
+$cancelMobileButton.addEventListener('click', function (event) {
+  $mobileModal.className = 'mobileModalContainerOff';
+  document.querySelector('#mobileForm').reset();
+});
+
+// Create addEventListener for Mobile Sticky Note Click
+$toggleMobileModal.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
-    $modal.className = 'modalContainerOn';
+    $mobileModal.className = 'mobileModalContainerOn';
     data.currentCoin = event.target.getAttribute('id');
-    // console.log(event.target.getAttribute('id'));
     for (var i = 0; i < data.entries.length; i++) {
       if (data.currentCoin === data.entries[i].coinID) {
-        $desktopNotes.value = data.entries[i].note;
-        // document.querySelector('#desktopForm').reset();
+        $mobileNotes.value = data.entries[i].note;
       }
     }
-    // for (var i = 0; i < data.entries.length; i++) {
-    //   for (var j = 1; j < $iClass.length - 1; j++) {
-    //     if (data.entries[i].coinID === $iClass[j].getAttribute('id')) {
-    //       $desktopNotes.value = data.entries[i].note;
-    //       console.log('coinID and Attribute are EQUAL!');
-    //     }
-    //   }
-    // }
   }
 });
 
-// Create addEventListener of Cancel Button
-$cancelDesktopButton.addEventListener('click', function (event) {
-  $modal.className = 'modalContainerOff';
-  document.querySelector('#desktopForm').reset();
-});
-
-// Desktop Submit Listener.
-$desktopForm.addEventListener('submit', function (event) {
+// Mobile Submit Listener
+$mobileForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
     note: $desktopNotes.value,
     coinID: data.currentCoin
   };
-  // console.log(formData.note);
-  // console.log(event.target.getAttribute('id'));
   if (formData.note !== '') {
-    data.entries.unshift(formData);
+    data.entries.push(formData);
   }
-  $modal.className = 'modalContainerOff';
-  document.querySelector('#desktopForm').reset();
+  $mobileModal.className = 'mobileModalContainerOff';
+  document.querySelector('#mobileForm').reset();
 });

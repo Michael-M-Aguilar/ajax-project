@@ -89,3 +89,27 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.mobileModalContainerOff {
+  display: none;
+}
+
+.mobileModalContainerOn {
+  display: inline;
+  top: 0;
+  left: 0;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mobileModalContent {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  width: 50%;
+  height: 34%;
+}

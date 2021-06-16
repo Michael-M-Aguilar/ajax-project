@@ -71,31 +71,38 @@
         </div>
       </div>
     </div>
-    <div class="container hiddenInDesktop mobileAppended" data-view="mobile-list-page">
-      <div class="mobileHeader flex justify-center">
-        <div>
-          <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
-        </div>
-        <div class="backgroundBlue">
-          <h1>Top Cryptos Today</h1>
-        </div>
-        <div>
-          <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
-        </div>
-      </div>
-    </div>
-    <div class="mobileModalContainerOff">
-      <div class="mobileModalContent flex flex-column">
-        <div class="textAreaDiv align-center hiddenInDesktop">
-          <label for="mobileNotes"></label>
-          <textarea id="mobileNotes" name="mobileNotes" class="notes" optional></textarea>
-        </div>
-        <div class="buttons align-center hiddenInDesktop">
-          <button class="cancelButton cancelMobileButton button textButton">CANCEL</button>
-          <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
+      <div class="container hiddenInDesktop mobileAppended toggleMobileModalOn" data-view="mobile-list-page">
+        <div class="mobileHeader flex justify-center">
+          <div>
+            <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
+          </div>
+          <div class="backgroundBlue">
+            <h1>Top Cryptos Today</h1>
+          </div>
+          <div>
+            <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+          </div>
         </div>
       </div>
-    </div>
+      <div id="mobileModal" class="mobileModalContainerOff">
+        <div class="mobileModalContent flex flex-column">
+          <div class="textAreaDiv align-center hiddenInDesktop">
+            <div>
+              <h3 class="text-align-center">Insert private note below.</h3>
+            </div>
+          <form id="mobileForm">
+            <div>
+              <label for="mobileNotes"></label>
+              <textarea id="mobileNotes" name="mobileNotes" class="mobileNotes" optional></textarea>
+            </div>
+            <div class="buttons align-center hiddenInDesktop">
+              <button id="cancelMobileModal" class="cancelButton cancelMobileButton button textButton">CANCEL</button>
+              <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
