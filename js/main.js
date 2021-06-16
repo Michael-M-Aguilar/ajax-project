@@ -50,6 +50,31 @@ function renderElements(element) {
   tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
   tdNineSticky.setAttribute('id', element.id);
 
+  // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
+  if (element.priceChange1h === 0) {
+    tdSix.className = 'neutral';
+  } else if (element.priceChange1h > 0) {
+    tdSix.className = 'tendies';
+  } else {
+    tdSix.className = 'losses';
+  }
+
+  if (element.priceChange1d === 0) {
+    tdSeven.className = 'neutral';
+  } else if (element.priceChange1d > 0) {
+    tdSeven.className = 'tendies';
+  } else {
+    tdSeven.className = 'losses';
+  }
+
+  if (element.priceChange1w === 0) {
+    tdEight.className = 'neutral';
+  } else if (element.priceChange1w > 0) {
+    tdEight.className = 'tendies';
+  } else {
+    tdEight.className = 'losses';
+  }
+
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
   trAppended.appendChild(tdTwo);
@@ -147,6 +172,14 @@ function mobileRenderElements(mobileElement) {
   var tdSticky = document.createElement('i');
   tdSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
   tdSticky.setAttribute('id', mobileElement.id);
+
+  if (mobileElement.priceChange1d === 0) {
+    h3Four.className = 'mobileNeutral';
+  } else if (mobileElement.priceChange1d > 0) {
+    h3Four.className = 'mobileTendies';
+  } else {
+    h3Four.className = 'mobileLosses';
+  }
 
   divOne.appendChild(divTwo);
   divTwo.appendChild(imgOne);
