@@ -60,9 +60,30 @@ th,
   background-color: #f48d8d;
 }
 
+.button {
+  border-radius: 14px;
+  border: 0 solid;
+  width: 150px;
+  height: 40px;
+}
+
+.textButton {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 24px;
+}
+
+textarea {
+  resize: none;
+  width: 350px;
+  height: 90px;
+  border: 2px solid black;
+}
+
 .backgroundBlue {
   background-color: #b6e7ff;
 }
+
+/* Mobile Related */
 
 .mobileChad {
   width: 100px;
@@ -74,4 +95,19 @@ th,
   width: 100px;
   height: 75px;
   align-self: flex-end;
+}
+
+/* Red/Green Feature on Numbers */
+.tendies {
+  text-align: center;
+  color: #00b424;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
+}
+
+.losses {
+  text-align: center;
+  color: #ff5964;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 24px;
 }

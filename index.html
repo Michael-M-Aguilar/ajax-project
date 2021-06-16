@@ -11,9 +11,10 @@
   <script src="https://kit.fontawesome.com/85972900af.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Karla:wght@800&family=Open+Sans+Condensed:wght@700&display=swap"
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@800&family=Open+Sans+Condensed:wght@700&display=swap"
   rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -46,44 +47,31 @@
               <th><i class="fas fa-info"></i></th>
             </tr>
           </thead>
-          <tbody class="appended">
-            <!-- <tr>
-              <td class="numbers">1 <img src="images/bitcoin.png" class="logos" alt="bitcoin"></td>
-              <td class="letters">Bitcoin BTC</td>
-              <td class="numbers">$34,094.85</td>
-              <td class="numbers">2,564,770,217,646</td>
-              <td class="numbers">$632,968,284,644</td>
-              <td class="numbers">18,728,618 BTC</td>
-              <td class="numbers">0.85%</td>
-              <td class="numbers">-9.45%</td>
-              <td><i class="fas fa-sticky-note"></i></td>
-            </tr>
-            <tr>
-              <td class="numbers">2 <img src="images/Ethereum-Logo.wine.svg" class="ethereumLogo" alt="ethereum"></td>
-              <td class="letters">Ethereum ETH</td>
-              <td class="numbers">$2501.71</td>
-              <td class="numbers">1,289,005,875,729</td>
-              <td class="numbers">$290,704,163,430.69</td>
-              <td class="numbers">116,202,166 ETH</td>
-              <td class="numbers">1.45%</td>
-              <td class="numbers">-9.95%</td>
-              <td><i class="fas fa-sticky-note"></i></td>
-            </tr> -->
+          <tbody class="appended toggleModalOn">
           </tbody>
         </table>
       </div>
-      <div class="modalContainer">
+      <div id="modal" class="modalContainerOff">
         <div class="modalContent">
-          <div class="text?">
-          </div>
-          <div class="buttons">
-            <!-- <button class="cancelButton">Cancel</button>
-            <button class="saveButton">Save</button> -->
+          <div class="flex flex-column">
+            <div class="modalText">
+              <h3 class="text-align-center">Insert private note below.</h3>
+            </div>
+            <form id="desktopForm">
+              <div class="textAreaDiv flex justify-center padding-bottom">
+                <label for="desktopNotes"></label>
+                <textarea id="desktopNotes" name="desktopNotes" class="desktopNotes" optional></textarea>
+              </div>
+              <div class="buttons flex justify-center">
+                <button id="cancelDesktopModal" class="cancelButton cancelDesktopButton button textButton">CANCEL</button>
+                <button id="saveDesktopModal" type="submit" class="saveButton saveDesktopButton button textButton">SAVE</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="container hiddenInDesktop mobileAppended" data-view="mobile-list-page">
+    <div class="container hiddenInDesktop mobileAppended toggleMobileModalOn" data-view="mobile-list-page">
       <div class="mobileHeader flex justify-center">
         <div>
           <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
@@ -95,19 +83,25 @@
           <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
         </div>
       </div>
-      <!-- <div class="flex justify-center">
-        <div class="selector">
-          <img src="images/bitcoin.png" class="mobileLogo " alt="bitcoin">
+    </div>
+    <div id="mobileModal" class="mobileModalContainerOff">
+      <div class="mobileModalContent flex flex-column">
+        <div class="textAreaDiv align-center hiddenInDesktop">
+          <div>
+            <h3 class="text-align-center">Insert private note below.</h3>
+          </div>
+        <form id="mobileForm">
+          <div>
+            <label for="mobileNotes"></label>
+            <textarea id="mobileNotes" name="mobileNotes" class="mobileNotes" optional></textarea>
+          </div>
+          <div class="buttons align-center hiddenInDesktop">
+            <button id="cancelMobileModal" class="cancelButton cancelMobileButton button textButton">CANCEL</button>
+            <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
+          </div>
+        </form>
         </div>
-        <div class="selector">
-          <h3 class="letters">BTC</h3>
-          <h3 class="letters">Bitcoin</h3>
-        </div>
-        <div class="selector">
-          <h3 class="numbers">$34,094.85</h3>
-          <h3 class="numbers">-3.90%</h3>
-        </div>
-      </div> -->
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
