@@ -14,7 +14,5 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data', dataJSON);
 });
 
-// STEPS!!!!
-// 1. onAPI success, call createCoinEntries()
-// 2. on editIcon click, call viewCoinNoteEntry()
-// 3. on save,  call updateCoinEntry()
+// you need to loop through the entries and find the one with the proper coinId
+// then assign that note to the value property of the textarea

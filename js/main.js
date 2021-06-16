@@ -7,7 +7,7 @@ var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 // var $save = document.getElementById('saveDesktopModal')
 var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
-var $iClass = document.getElementsByTagName('I');
+// var $iClass = document.getElementsByTagName('I');
 // var attribute = trial.getAttribute('id');
 // var $targetCoin = $iClass.getAttribute('id');
 // var $idQuery = document.getElementById('bitcoin');
@@ -188,19 +188,28 @@ $toggleModalOn.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     $modal.className = 'modalContainerOn';
     data.currentCoin = event.target.getAttribute('id');
+    // console.log(event.target.getAttribute('id'));
     for (var i = 0; i < data.entries.length; i++) {
-      for (var j = 1; j < $iClass.length - 1; j++) {
-        if (data.entries[i].currentCoin === $iClass[j].getAttribute('id')) {
-          $desktopNotes.value = data.entries[i].note;
-        }
+      if (data.currentCoin === data.entries[i].coinID) {
+        $desktopNotes.value = data.entries[i].note;
+        // document.querySelector('#desktopForm').reset();
       }
     }
+    // for (var i = 0; i < data.entries.length; i++) {
+    //   for (var j = 1; j < $iClass.length - 1; j++) {
+    //     if (data.entries[i].coinID === $iClass[j].getAttribute('id')) {
+    //       $desktopNotes.value = data.entries[i].note;
+    //       console.log('coinID and Attribute are EQUAL!');
+    //     }
+    //   }
+    // }
   }
 });
 
 // Create addEventListener of Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
   $modal.className = 'modalContainerOff';
+  document.querySelector('#desktopForm').reset();
 });
 
 // Desktop Submit Listener.
@@ -216,4 +225,5 @@ $desktopForm.addEventListener('submit', function (event) {
     data.entries.unshift(formData);
   }
   $modal.className = 'modalContainerOff';
+  document.querySelector('#desktopForm').reset();
 });
