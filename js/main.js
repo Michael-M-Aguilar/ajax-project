@@ -11,7 +11,9 @@ var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
 var $mobileNotes = document.querySelector('#mobileNotes');
 var $mobileForm = document.querySelector('#mobileForm');
-
+var $table = document.getElementById('desktopTable');
+// var $sortRank = document.querySelector('.sort-rank');
+var $sortName = document.querySelector('.sort-name');
 // THE START OF DESKTOP FUNCTIONS
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
@@ -92,16 +94,69 @@ function renderElements(element) {
 // Function to make our API request, and then append our DOM tree to our targeted position.
 function coinstatRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
+  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhr.setRequestHeader('token', 'abc123');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
+      // var savedData = {
+      //   savedData: data.savedData
+      // };
+      // savedData.push(xhr.response[i]);
     }
   });
   xhr.send();
+}
+
+// Function to help sort the table.
+function alphabetTableSort() {
+  var switching = true;
+  var forceSwitch;
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var x = rows[i].getElementsByTagName('TD')[1];
+      var y = rows[i + 1].getElementsByTagName('TD')[1];
+      forceSwitch = false;
+      // console.log('Value of X:', x);
+      // console.log('Value of Y:', y);
+      if (x.innerText.toUpperCase() > y.innerText.toUpperCase()) {
+        forceSwitch = true;
+        break;
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+// Function to help reverse sort ABC order on the table.
+function revAlphabetTableSort() {
+  var switching = true;
+  var forceSwitch;
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var x = rows[i].getElementsByTagName('TD')[1];
+      var y = rows[i + 1].getElementsByTagName('TD')[1];
+      forceSwitch = false;
+      // console.log('Value of X:', x);
+      // console.log('Value of Y:', y);
+      if (x.innerText.toUpperCase() < y.innerText.toUpperCase()) {
+        forceSwitch = true;
+        break;
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
 }
 
 // When the window loads, will load the coinstatRequest function.
@@ -141,6 +196,14 @@ $desktopForm.addEventListener('submit', function (event) {
   $modal.className = 'modalContainerOff';
   document.querySelector('#desktopForm').reset();
 });
+
+// Desktop Sort eventListener
+$sortName.addEventListener('click', function (event) {
+  // console.log('Name Sort Clicked!');
+  alphabetTableSort();
+  revAlphabetTableSort();
+});
+
 // END OF DESKTOP FUNCTIONS
 
 // NEXT FUNCTIONS ARE FOR MOBILE ONLY
@@ -196,7 +259,7 @@ function mobileRenderElements(mobileElement) {
 // Function to make the API request, and append our DOM tree for mobile only.
 function mobileCoinStatRequest() {
   var xhrm = new XMLHttpRequest();
-  xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
+  xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhrm.setRequestHeader('token', 'abc123');
   xhrm.responseType = 'json';
   xhrm.addEventListener('load', function () {

@@ -1,7 +1,8 @@
 /* exported data */
 var data = {
   entries: [],
-  currentCoin: ''
+  currentCoin: '',
+  savedData: []
 };
 
 var previousDataJSON = localStorage.getItem('data');
