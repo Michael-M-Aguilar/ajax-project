@@ -12,8 +12,21 @@ var $desktopForm = document.querySelector('#desktopForm');
 var $mobileNotes = document.querySelector('#mobileNotes');
 var $mobileForm = document.querySelector('#mobileForm');
 var $table = document.getElementById('desktopTable');
-// var $sortRank = document.querySelector('.sort-rank');
+var $sortRank = document.querySelector('.sort-rank');
 var $sortName = document.querySelector('.sort-name');
+var $sortPrice = document.querySelector('.sort-price');
+var $sortVolume = document.querySelector('.sort-volume');
+var $sortCap = document.querySelector('.sort-cap');
+var $sort1h = document.querySelector('.sort-1h');
+var $sort24h = document.querySelector('.sort-24h');
+var $sort7d = document.querySelector('.sort-7d');
+
+// $('th').on('click', function () {
+//   var column = $(this).data('column')
+//   var order = $(this).data('order')
+//   console.log('Column was Clicked!,' column, order)
+// })
+
 // THE START OF DESKTOP FUNCTIONS
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
@@ -101,28 +114,22 @@ function coinstatRequest() {
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
-      // var savedData = {
-      //   savedData: data.savedData
-      // };
-      // savedData.push(xhr.response[i]);
     }
   });
   xhr.send();
 }
 
-// Function to help sort the table.
-function alphabetTableSort() {
+// Function to help sort names, and priceChanges columns
+function nameSortColumn(n) {
   var switching = true;
   var forceSwitch;
   while (switching) {
     switching = false;
     var rows = $table.rows;
     for (var i = 1; i < (rows.length - 1); i++) {
-      var x = rows[i].getElementsByTagName('TD')[1];
-      var y = rows[i + 1].getElementsByTagName('TD')[1];
+      var x = rows[i].getElementsByTagName('TD')[n];
+      var y = rows[i + 1].getElementsByTagName('TD')[n];
       forceSwitch = false;
-      // console.log('Value of X:', x);
-      // console.log('Value of Y:', y);
       if (x.innerText.toUpperCase() > y.innerText.toUpperCase()) {
         forceSwitch = true;
         break;
@@ -134,20 +141,18 @@ function alphabetTableSort() {
     }
   }
 }
-// Function to help reverse sort ABC order on the table.
-function revAlphabetTableSort() {
+// Function to help sort numbers like ranks and prices
+function numSortColumn(n) {
   var switching = true;
   var forceSwitch;
   while (switching) {
     switching = false;
     var rows = $table.rows;
     for (var i = 1; i < (rows.length - 1); i++) {
-      var x = rows[i].getElementsByTagName('TD')[1];
-      var y = rows[i + 1].getElementsByTagName('TD')[1];
+      var x = rows[i].getElementsByTagName('TD')[n];
+      var y = rows[i + 1].getElementsByTagName('TD')[n];
       forceSwitch = false;
-      // console.log('Value of X:', x);
-      // console.log('Value of Y:', y);
-      if (x.innerText.toUpperCase() < y.innerText.toUpperCase()) {
+      if (x.innerText * 100 > y.innerText * 100) {
         forceSwitch = true;
         break;
       }
@@ -158,6 +163,10 @@ function revAlphabetTableSort() {
     }
   }
 }
+
+// function sortScore(a, b) {
+//   return (a * 1000) - (b * 1000);
+// }
 
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -197,11 +206,39 @@ $desktopForm.addEventListener('submit', function (event) {
   document.querySelector('#desktopForm').reset();
 });
 
+$sortRank.addEventListener('click', function (event) {
+  numSortColumn(0);
+});
+
 // Desktop Sort eventListener
 $sortName.addEventListener('click', function (event) {
   // console.log('Name Sort Clicked!');
-  alphabetTableSort();
-  revAlphabetTableSort();
+  nameSortColumn(1);
+  // reverseColumn1();
+});
+
+$sortPrice.addEventListener('click', function (event) {
+  // console.log('Price sort Clicked!');
+  numSortColumn(2);
+});
+
+$sortVolume.addEventListener('click', function (event) {
+  // console.log('Volume sort Clicked!');
+  numSortColumn(3);
+});
+
+$sortCap.addEventListener('click', function (event) {
+  numSortColumn(4);
+});
+
+$sort1h.addEventListener('click', function (event) {
+  nameSortColumn(5);
+});
+$sort24h.addEventListener('click', function (event) {
+  nameSortColumn(6);
+});
+$sort7d.addEventListener('click', function (event) {
+  nameSortColumn(7);
 });
 
 // END OF DESKTOP FUNCTIONS

@@ -36,17 +36,15 @@
         <table id="desktopTable">
           <thead>
             <tr>
-              <div>
-                <th class="letters">Rank <i class="fas fa-sort sort-rank"></i></th>
-              </div>
-              <th class="letters">Name <i class="fas fa-sort sort-name"></i></th>
-              <th class="letters">Price <i class="fas fa-sort"></i></th>
-              <th class="letters">24H Trading Volume <i class="fas fa-sort"></i></th>
-              <th class="letters">Market Cap <i class="fas fa-sort"></i></th>
-              <th class="letters">Price Change 1H <i class="fas fa-sort"></i></th>
-              <th class="letters">Price Change 24 <i class="fas fa-sort"></i></th>
-              <th class="letters">Price Change 7D <i class="fas fa-sort"></i></th>
-              <th><i class="fas fa-info"></i></th>
+              <th data-column="rank" data-order="desc" class="letters">Rank <i class="fas fa-sort sort-rank"></i></th>
+              <th data-column="name" data-order="desc" class="letters">Name <i class="fas fa-sort sort-name"></i></th>
+              <th data-column="price" data-order="desc" class="letters">Price <i class="fas fa-sort sort-price"></i></th>
+              <th data-column="trading" data-order="desc" class="letters">24H Trading Volume <i class="fas fa-sort sort-volume"></i></th>
+              <th data-column="cap" data-order="desc" class="letters">Market Cap <i class="fas fa-sort sort-cap"></i></th>
+              <th data-column="1h" data-order="desc" class="letters">Price Change 1H <i class="fas fa-sort sort-1h"></i></th>
+              <th data-column="24h" data-order="desc" class="letters">Price Change 24H <i class="fas fa-sort sort-24h"></i></th>
+              <th data-column="7d" data-order="desc" class="letters">Price Change 7D <i class="fas fa-sort sort-7d"></i></th>
+              <th class="letters">Notes</th>
             </tr>
           </thead>
           <tbody class="appended toggleModalOn">
