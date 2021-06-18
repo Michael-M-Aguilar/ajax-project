@@ -1,4 +1,7 @@
 // Declare a variable to append my DOM tree too.
+// Coinsaves serves as a storage for the coins API request.
+var coinSaves;
+// Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
 var $mobileAppended = document.querySelector('.mobileAppended');
 var $toggleModalOn = document.querySelector('.toggleModalOn');
@@ -20,38 +23,48 @@ var $sortCap = document.querySelector('.sort-cap');
 var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
+var $queries = document.querySelector('.queryPage');
 
 // THE START OF DESKTOP FUNCTIONS
+
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
   var tdOne = document.createElement('td');
   tdOne.setAttribute('class', 'numbers paddingForTable');
+  tdOne.setAttribute('id', element.id);
   tdOne.textContent = element.rank;
   var tdOneImage = document.createElement('img');
   tdOneImage.setAttribute('src', element.icon);
   tdOneImage.setAttribute('class', 'logos');
+  tdOneImage.setAttribute('id', element.id);
   var tdTwo = document.createElement('td');
   tdTwo.setAttribute('class', 'letters paddingForTable');
+  tdTwo.setAttribute('id', element.id);
   tdTwo.textContent = element.name + ' ' + element.symbol;
   var tdThree = document.createElement('td');
   tdThree.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdThree.setAttribute('id', element.id);
   tdThree.textContent = '$' + Math.ceil(element.price * 100) / 100;
   var tdFour = document.createElement('td');
   tdFour.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdFour.setAttribute('id', element.id);
   tdFour.textContent = '$' + Math.ceil(element.volume * 100) / 100;
   var tdFive = document.createElement('td');
   tdFive.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdFive.setAttribute('id', element.id);
   tdFive.textContent = '$' + Math.ceil(element.marketCap * 100) / 100;
   var tdSix = document.createElement('td');
   tdSix.setAttribute('class', 'numbers text-align-center paddingForTable nodeList');
-  tdSix.setAttribute('id', 'nodeList');
+  tdSix.setAttribute('id', 'element.id');
   tdSix.textContent = element.priceChange1h + '%';
   var tdSeven = document.createElement('td');
   tdSeven.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdSeven.setAttribute('id', element.id);
   tdSeven.textContent = element.priceChange1d + '%';
   var tdEight = document.createElement('td');
   tdEight.setAttribute('class', 'numbers text-align-center paddingForTable');
+  tdEight.setAttribute('id', element.id);
   tdEight.textContent = element.priceChange1w + '%';
   var tdNine = document.createElement('td');
   tdNine.setAttribute('id', element.id);
@@ -96,6 +109,22 @@ function renderElements(element) {
   trAppended.appendChild(tdNine);
   tdNine.appendChild(tdNineSticky);
   return trAppended;
+
+}
+
+// Function to create DOM tree when crypto is clicked
+function createClick() {
+  var divOne = document.createElement('div');
+  divOne.setAttribute('class', 'flex space-evenly');
+  var divTwo = document.createElement('div');
+  divTwo.setAttribute('class', 'align-center');
+  var divTwoImage = document.createElement('img');
+  divTwoImage.setAttribute('src', coinSaves[0].icon);
+
+  divOne.appendChild(divTwo);
+  divTwo.appendChild(divTwoImage);
+
+  return divOne;
 }
 
 // Function to make our API request, and then append our DOM tree to our targeted position.
@@ -109,6 +138,8 @@ function coinstatRequest() {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
     }
+    // help save the coins API request
+    coinSaves = xhr.response.coins;
   });
   xhr.send();
 }
@@ -261,12 +292,75 @@ function percentSortColumn(a) {
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
   coinstatRequest();
+  // var trial = document.querySelectorAll('#bitcoin');
+  // console.log('trial logged', trial);
 });
 
 // Create addEventListener of Desktop Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
   $modal.className = 'modalContainerOff';
   document.querySelector('#desktopForm').reset();
+});
+
+$queries.addEventListener('click', function (event) {
+  if (event.target.id === 'bitcoin') {
+    createClick();
+    // console.log('Bitcoin clicked!');
+  }
+  // if (event.target.id === 'ethereum') {
+  //   console.log('Ethereum clicked!');
+  // }
+
+  // if (event.target.id === 'tether') {
+  //   console.log('Tether clicked!');
+  // }
+
+  // if (event.target.id === 'binance-coin') {
+  //   console.log('Binance-coin clicked!');
+  // }
+
+  // if (event.target.id === 'cardano') {
+  //   console.log('Cardano clicked!');
+  // }
+
+  // if (event.target.id === 'dogecoin') {
+  //   console.log('DOGE clicked!');
+  // }
+  // if (event.target.id === 'ripple') {
+  //   console.log('XRP clicked!');
+  // }
+
+  // if (event.target.id === 'usd-coin') {
+  //   console.log('usd-coin clicked!');
+  // }
+
+  // if (event.target.id === 'polkadot') {
+  //   console.log('Polka clicked!');
+  // }
+
+  // if (event.target.id === 'bitcoin-cash') {
+  //   console.log('Bitcoin-cash clicked!');
+  // }
+
+  // if (event.target.id === 'uniswap') {
+  //   console.log('Uni clicked!');
+  // }
+
+  // if (event.target.id === 'litecoin') {
+  //   console.log('Lite clicked!');
+  // }
+
+  // if (event.target.id === 'solana') {
+  //   console.log('Solana clicked!');
+  // }
+
+  // if (event.target.id === 'binance-usd') {
+  //   console.log('Binance clicked!');
+  // }
+
+  // if (event.target.id === 'chainlink') {
+  //   console.log('Chain clicked!');
+  // }
 });
 
 // Create addEventListener  for the sticky note click.

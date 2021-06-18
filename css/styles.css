@@ -8,7 +8,8 @@ thead {
 }
 
 td,
-.selector {
+.selector,
+.logoContainer {
   background-color: #f3f1f1;
 }
 
@@ -29,6 +30,10 @@ th,
 
 .align-center {
   align-self: center;
+}
+
+.padding-left-sm {
+  padding-left: 25px;
 }
 
 .padding-left {

@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-column {
   flex-direction: column;
 }
@@ -14,8 +18,12 @@
   justify-content: space-between;
 }
 
+.space-evenly {
+  justify-content: space-around;
+}
+
 .container {
-  max-width: 575px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -25,9 +33,14 @@
   max-height: 59px;
 }
 
+.clicked-logos {
+  width: 60px;
+  height: 75px;
+}
+
 @media screen and (min-width: 768px) {
   .container {
-    width: 500px;
+    width: 767px;
   }
 
   /* To show the mobile version on Chrome. */
