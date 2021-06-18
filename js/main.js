@@ -21,12 +21,6 @@ var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
 
-// $('th').on('click', function () {
-//   var column = $(this).data('column')
-//   var order = $(this).data('order')
-//   console.log('Column was Clicked!,' column, order)
-// })
-
 // THE START OF DESKTOP FUNCTIONS
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
@@ -119,54 +113,150 @@ function coinstatRequest() {
   xhr.send();
 }
 
-// Function to help sort names, and priceChanges columns
-function nameSortColumn(n) {
+// Function to help sort names
+function nameSortColumn(a) {
   var switching = true;
-  var forceSwitch;
+  var count = 0;
+  var direction = 'ascending';
   while (switching) {
     switching = false;
     var rows = $table.rows;
     for (var i = 1; i < (rows.length - 1); i++) {
-      var x = rows[i].getElementsByTagName('TD')[n];
-      var y = rows[i + 1].getElementsByTagName('TD')[n];
-      forceSwitch = false;
-      if (x.innerText.toUpperCase() > y.innerText.toUpperCase()) {
-        forceSwitch = true;
-        break;
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText.toUpperCase() > y.innerText.toUpperCase()) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText.toUpperCase() < y.innerText.toUpperCase()) {
+          forceSwitch = true;
+          break;
+        }
       }
     }
     if (forceSwitch) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
     }
   }
 }
-// Function to help sort numbers like ranks and prices
-function numSortColumn(n) {
+// Function to help sort prices, volumes, and cap.
+function priceSortColumn(a) {
   var switching = true;
-  var forceSwitch;
+  var count = 0;
+  var direction = 'ascending';
   while (switching) {
     switching = false;
     var rows = $table.rows;
     for (var i = 1; i < (rows.length - 1); i++) {
-      var x = rows[i].getElementsByTagName('TD')[n];
-      var y = rows[i + 1].getElementsByTagName('TD')[n];
-      forceSwitch = false;
-      if (x.innerText * 100 > y.innerText * 100) {
-        forceSwitch = true;
-        break;
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText.slice(1, 15) * 1000000 > y.innerText.slice(1, 15) * 1000000) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText.slice(1, 15) * 1000000 < y.innerText.slice(1, 15) * 1000000) {
+          forceSwitch = true;
+          break;
+        }
       }
     }
     if (forceSwitch) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
     }
   }
 }
-
-// function sortScore(a, b) {
-//   return (a * 1000) - (b * 1000);
-// }
+// Function to help sort the Ranks
+function rankSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText * 100 > y.innerText * 100) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText * 100 < y.innerText * 100) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
+}
+// Function to help sort the %'s.
+function percentSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (parseFloat(x.innerText) > parseFloat(y.innerText)) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (parseFloat(x.innerText) < parseFloat(y.innerText)) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
+}
 
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -206,39 +296,30 @@ $desktopForm.addEventListener('submit', function (event) {
   document.querySelector('#desktopForm').reset();
 });
 
+// Next several sorts are listeners to help sort the table.
 $sortRank.addEventListener('click', function (event) {
-  numSortColumn(0);
+  rankSortColumn(0);
 });
-
-// Desktop Sort eventListener
 $sortName.addEventListener('click', function (event) {
-  // console.log('Name Sort Clicked!');
   nameSortColumn(1);
-  // reverseColumn1();
 });
-
 $sortPrice.addEventListener('click', function (event) {
-  // console.log('Price sort Clicked!');
-  numSortColumn(2);
+  priceSortColumn(2);
 });
-
 $sortVolume.addEventListener('click', function (event) {
-  // console.log('Volume sort Clicked!');
-  numSortColumn(3);
+  priceSortColumn(3);
 });
-
 $sortCap.addEventListener('click', function (event) {
-  numSortColumn(4);
+  priceSortColumn(4);
 });
-
 $sort1h.addEventListener('click', function (event) {
-  nameSortColumn(5);
+  percentSortColumn(5);
 });
 $sort24h.addEventListener('click', function (event) {
-  nameSortColumn(6);
+  percentSortColumn(6);
 });
 $sort7d.addEventListener('click', function (event) {
-  nameSortColumn(7);
+  percentSortColumn(7);
 });
 
 // END OF DESKTOP FUNCTIONS
