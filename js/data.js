@@ -1,7 +1,8 @@
 /* exported data */
 var data = {
   entries: [],
-  currentCoin: ''
+  currentCoin: '',
+  savedData: []
 };
 
 var previousDataJSON = localStorage.getItem('data');
@@ -13,6 +14,3 @@ window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
 });
-
-// you need to loop through the entries and find the one with the proper coinId
-// then assign that note to the value property of the textarea

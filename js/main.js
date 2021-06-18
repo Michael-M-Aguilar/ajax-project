@@ -11,6 +11,15 @@ var $desktopNotes = document.querySelector('#desktopNotes');
 var $desktopForm = document.querySelector('#desktopForm');
 var $mobileNotes = document.querySelector('#mobileNotes');
 var $mobileForm = document.querySelector('#mobileForm');
+var $table = document.getElementById('desktopTable');
+var $sortRank = document.querySelector('.sort-rank');
+var $sortName = document.querySelector('.sort-name');
+var $sortPrice = document.querySelector('.sort-price');
+var $sortVolume = document.querySelector('.sort-volume');
+var $sortCap = document.querySelector('.sort-cap');
+var $sort1h = document.querySelector('.sort-1h');
+var $sort24h = document.querySelector('.sort-24h');
+var $sort7d = document.querySelector('.sort-7d');
 
 // THE START OF DESKTOP FUNCTIONS
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
@@ -92,7 +101,7 @@ function renderElements(element) {
 // Function to make our API request, and then append our DOM tree to our targeted position.
 function coinstatRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
+  xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhr.setRequestHeader('token', 'abc123');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
@@ -102,6 +111,151 @@ function coinstatRequest() {
     }
   });
   xhr.send();
+}
+
+// Function to help sort names
+function nameSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText.toUpperCase() > y.innerText.toUpperCase()) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText.toUpperCase() < y.innerText.toUpperCase()) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
+}
+// Function to help sort prices, volumes, and cap.
+function priceSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText.slice(1, 15) * 1000000 > y.innerText.slice(1, 15) * 1000000) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText.slice(1, 15) * 1000000 < y.innerText.slice(1, 15) * 1000000) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
+}
+// Function to help sort the Ranks
+function rankSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (x.innerText * 100 > y.innerText * 100) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (x.innerText * 100 < y.innerText * 100) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
+}
+// Function to help sort the %'s.
+function percentSortColumn(a) {
+  var switching = true;
+  var count = 0;
+  var direction = 'ascending';
+  while (switching) {
+    switching = false;
+    var rows = $table.rows;
+    for (var i = 1; i < (rows.length - 1); i++) {
+      var forceSwitch = false;
+      var x = rows[i].getElementsByTagName('TD')[a];
+      var y = rows[i + 1].getElementsByTagName('TD')[a];
+      if (direction === 'ascending') {
+        if (parseFloat(x.innerText) > parseFloat(y.innerText)) {
+          forceSwitch = true;
+          break;
+        }
+      } else if (direction === 'descending') {
+        if (parseFloat(x.innerText) < parseFloat(y.innerText)) {
+          forceSwitch = true;
+          break;
+        }
+      }
+    }
+    if (forceSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      count++;
+    } else {
+      if (count === 0 && direction === 'ascending') {
+        direction = 'descending';
+        switching = true;
+      }
+    }
+  }
 }
 
 // When the window loads, will load the coinstatRequest function.
@@ -141,6 +295,33 @@ $desktopForm.addEventListener('submit', function (event) {
   $modal.className = 'modalContainerOff';
   document.querySelector('#desktopForm').reset();
 });
+
+// Next several sorts are listeners to help sort the table.
+$sortRank.addEventListener('click', function (event) {
+  rankSortColumn(0);
+});
+$sortName.addEventListener('click', function (event) {
+  nameSortColumn(1);
+});
+$sortPrice.addEventListener('click', function (event) {
+  priceSortColumn(2);
+});
+$sortVolume.addEventListener('click', function (event) {
+  priceSortColumn(3);
+});
+$sortCap.addEventListener('click', function (event) {
+  priceSortColumn(4);
+});
+$sort1h.addEventListener('click', function (event) {
+  percentSortColumn(5);
+});
+$sort24h.addEventListener('click', function (event) {
+  percentSortColumn(6);
+});
+$sort7d.addEventListener('click', function (event) {
+  percentSortColumn(7);
+});
+
 // END OF DESKTOP FUNCTIONS
 
 // NEXT FUNCTIONS ARE FOR MOBILE ONLY
@@ -196,7 +377,7 @@ function mobileRenderElements(mobileElement) {
 // Function to make the API request, and append our DOM tree for mobile only.
 function mobileCoinStatRequest() {
   var xhrm = new XMLHttpRequest();
-  xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=7&currency=USD');
+  xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhrm.setRequestHeader('token', 'abc123');
   xhrm.responseType = 'json';
   xhrm.addEventListener('load', function () {
