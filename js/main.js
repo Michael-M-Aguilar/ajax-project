@@ -296,15 +296,20 @@ function createClick(n) {
   var divThree = document.createElement('div');
   divThree.setAttribute('class', 'align-center');
   var firsth1 = document.createElement('h1');
+  firsth1.setAttribute('class', 'letters');
   firsth1.textContent = coinSaves[n].name;
   var firsth3 = document.createElement('h3');
   firsth3.textContent = coinSaves[n].symbol;
+  firsth3.setAttribute('class', 'letters');
   var divFour = document.createElement('div');
   divFour.setAttribute('class', 'align-center');
+
   var secondh3 = document.createElement('h3');
   secondh3.textContent = '$' + Math.ceil(coinSaves[n].price * 100) / 100;
+  secondh3.setAttribute('class', 'numbers');
   var thirdh3 = document.createElement('h3');
   thirdh3.textContent = coinSaves[n].priceChange1d + '%';
+
   var divFive = document.createElement('div');
   divFive.setAttribute('class', 'symbol-container');
   var a1 = document.createElement('a');
@@ -328,24 +333,51 @@ function createClick(n) {
   divSeven.setAttribute('class', 'graph flex justify-center');
   var graph = document.createElement('img');
   graph.setAttribute('src', '/images/Amazon_1.png');
+
+  var spanOne = document.createElement('span');
+  spanOne.setAttribute('class', 'numbers');
+  spanOne.textContent = coinSaves[n].priceChange1h + '%';
+  var spanTwo = document.createElement('span');
+  spanTwo.setAttribute('class', 'numbers');
+  spanTwo.textContent = coinSaves[n].priceChange1d + '%';
+  var spanThree = document.createElement('span');
+  spanThree.setAttribute('class', 'numbers');
+  spanThree.textContent = coinSaves[n].priceChange1w + '%';
+  var spanFour = document.createElement('span');
+  spanFour.textContent = Math.ceil(coinSaves[n].marketCap * 100) / 100;
+  spanFour.setAttribute('class', 'numbers');
+  var spanFive = document.createElement('span');
+  spanFive.setAttribute('class', 'numbers');
+  spanFive.textContent = coinSaves[n].rank;
+  var spanSix = document.createElement('span');
+  spanSix.setAttribute('class', 'numbers');
+  spanSix.textContent = coinSaves[n].totalSupply + ' ' + coinSaves[n].symbol;
+
   var pOne = document.createElement('p');
-  pOne.setAttribute('class', 'padding-left-sm');
-  pOne.textContent = 'Market Cap: ' + Math.ceil(coinSaves[n].marketCap * 100) / 100;
+  pOne.setAttribute('class', 'padding-left-sm letters');
+  pOne.textContent = 'Market Cap: ';
   var pTwo = document.createElement('p');
-  pTwo.setAttribute('class', 'padding-left-sm');
-  pTwo.textContent = 'Price Change (1H): ' + coinSaves[n].priceChange1h + '%';
+  pTwo.setAttribute('class', 'padding-left-sm letters');
+  pTwo.textContent = 'Price Change (1H): ';
   var pThree = document.createElement('p');
-  pThree.setAttribute('class', 'padding-left-sm');
-  pThree.textContent = 'Price Change (24H): ' + coinSaves[n].priceChange1d + '%';
+  pThree.setAttribute('class', 'padding-left-sm letters');
+  pThree.textContent = 'Price Change (24H): ';
   var pFour = document.createElement('p');
-  pFour.setAttribute('class', 'padding-left-sm');
-  pFour.textContent = 'Price Change (7D): ' + coinSaves[n].priceChange1w + '%';
+  pFour.setAttribute('class', 'padding-left-sm letters');
+  pFour.textContent = 'Price Change (7D): ';
   var pFive = document.createElement('p');
-  pFive.setAttribute('class', 'padding-left-sm');
-  pFive.textContent = 'Rank: ' + coinSaves[n].rank;
+  pFive.setAttribute('class', 'padding-left-sm letters');
+  pFive.textContent = 'Rank: ';
   var pSix = document.createElement('p');
-  pSix.setAttribute('class', 'padding-left-sm');
-  pSix.textContent = 'Max Supply Available: ' + coinSaves[n].totalSupply + ' ' + coinSaves[n].symbol;
+  pSix.setAttribute('class', 'padding-left-sm letters');
+  pSix.textContent = 'Max Supply Available: ';
+
+  pOne.appendChild(spanFour);
+  pTwo.appendChild(spanOne);
+  pThree.appendChild(spanTwo);
+  pFour.appendChild(spanThree);
+  pFive.appendChild(spanFive);
+  pSix.appendChild(spanSix);
 
   div.appendChild(divOne);
   div.appendChild(divSix);
@@ -374,6 +406,33 @@ function createClick(n) {
   divSix.appendChild(pFive);
   divSix.appendChild(pSix);
   divSeven.appendChild(graph);
+
+  if (coinSaves[n].priceChange1h === 0) {
+    spanOne.className = 'neutral';
+  } else if (coinSaves[n].priceChange1h > 0) {
+    spanOne.className = 'tendies';
+  } else {
+    spanOne.className = 'losses';
+  }
+
+  if (coinSaves[n].priceChange1d === 0) {
+    spanTwo.className = 'neutral';
+    thirdh3.className = 'neutral';
+  } else if (coinSaves[n].priceChange1d > 0) {
+    spanTwo.className = 'tendies';
+    thirdh3.className = 'header-tendies';
+  } else {
+    spanTwo.className = 'losses';
+    thirdh3.className = 'losses';
+  }
+
+  if (coinSaves[n].priceChange1w === 0) {
+    spanThree.className = 'neutral';
+  } else if (coinSaves[n].priceChange1w > 0) {
+    spanThree.className = 'tendies';
+  } else {
+    spanThree.className = 'losses';
+  }
 
   return div;
 }

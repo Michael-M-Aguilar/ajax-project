@@ -14,7 +14,7 @@ td,
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 3rem;
 }
 
 td,
@@ -25,7 +25,12 @@ th,
 
 .numbers {
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
+}
+
+.letters {
+  font-family: 'Karla', sans-serif;
+  font-size: 1.4rem;
 }
 
 .align-center {
@@ -50,11 +55,6 @@ th,
 
 .text-align-center {
   text-align: center;
-}
-
-.letters {
-  font-family: 'Karla', sans-serif;
-  font-size: 24px;
 }
 
 .saveButton {
@@ -89,25 +89,32 @@ textarea {
 }
 
 /* Red/Green Feature on Numbers */
+.header-tendies {
+  text-align: center;
+  color: #00b424;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.6rem;
+}
+
 .tendies {
   text-align: center;
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .losses {
   text-align: center;
   color: #ff5964;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .neutral {
   text-align: center;
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 /* Mobile Related */
@@ -130,17 +137,17 @@ textarea {
 .mobileTendies {
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .mobileLosses {
   color: #ff5964;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .mobileNeutral {
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
