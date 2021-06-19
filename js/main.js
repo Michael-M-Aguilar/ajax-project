@@ -3,6 +3,7 @@
 var coinSaves;
 // Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
+var $appendCrypto = document.querySelector('.appendCrypto');
 var $mobileAppended = document.querySelector('.mobileAppended');
 var $toggleModalOn = document.querySelector('.toggleModalOn');
 var $toggleMobileModal = document.querySelector('.toggleMobileModalOn');
@@ -110,21 +111,6 @@ function renderElements(element) {
   tdNine.appendChild(tdNineSticky);
   return trAppended;
 
-}
-
-// Function to create DOM tree when crypto is clicked
-function createClick() {
-  var divOne = document.createElement('div');
-  divOne.setAttribute('class', 'flex space-evenly');
-  var divTwo = document.createElement('div');
-  divTwo.setAttribute('class', 'align-center');
-  var divTwoImage = document.createElement('img');
-  divTwoImage.setAttribute('src', coinSaves[0].icon);
-
-  divOne.appendChild(divTwo);
-  divTwo.appendChild(divTwoImage);
-
-  return divOne;
 }
 
 // Function to make our API request, and then append our DOM tree to our targeted position.
@@ -289,11 +275,86 @@ function percentSortColumn(a) {
   }
 }
 
+// Function to create DOM tree when crypto is clicked
+function createClick(n) {
+  var div = document.createElement('div');
+  var divOne = document.createElement('div');
+  divOne.setAttribute('class', 'flex space-evenly');
+  var divTwo = document.createElement('div');
+  divTwo.setAttribute('class', 'align-center');
+  var divTwoImage = document.createElement('img');
+  divTwoImage.setAttribute('src', coinSaves[n].icon);
+  divTwoImage.setAttribute('class', 'align-center');
+  var divThree = document.createElement('div');
+  divThree.setAttribute('class', 'align-center');
+  var firsth1 = document.createElement('h1');
+  firsth1.textContent = coinSaves[n].name;
+  var firsth3 = document.createElement('h3');
+  firsth3.textContent = coinSaves[n].symbol;
+  var divFour = document.createElement('div');
+  divFour.setAttribute('class', 'align-center');
+  var secondh3 = document.createElement('h3');
+  secondh3.textContent = '$' + Math.ceil(coinSaves[n].price * 100) / 100;
+  var thirdh3 = document.createElement('h3');
+  thirdh3.textContent = coinSaves[n].priceChange1d + '%';
+  var divFive = document.createElement('div');
+  var iOne = document.createElement('i');
+  iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x');
+  var iTwo = document.createElement('i');
+  iTwo.setAttribute('class', 'fas fa-list fa-4x');
+  var divSix = document.createElement('div');
+  divSix.setAttribute('class', 'body flex flex-wrap justify-center');
+  var divSeven = document.createElement('div');
+  divSeven.setAttribute('class', 'graph flex justify-center');
+  var graph = document.createElement('img');
+  graph.setAttribute('src', '/images/Amazon_1.png');
+  var pOne = document.createElement('p');
+  pOne.setAttribute('class', 'padding-left-sm');
+  pOne.textContent = 'Market Cap: ' + Math.ceil(coinSaves[n].marketCap * 100) / 100;
+  var pTwo = document.createElement('p');
+  pTwo.setAttribute('class', 'padding-left-sm');
+  pTwo.textContent = 'Price Change (1H): ' + coinSaves[n].priceChange1h + '%';
+  var pThree = document.createElement('p');
+  pThree.setAttribute('class', 'padding-left-sm');
+  pThree.textContent = 'Price Change (24H): ' + coinSaves[n].priceChange1d + '%';
+  var pFour = document.createElement('p');
+  pFour.setAttribute('class', 'padding-left-sm');
+  pFour.textContent = 'Price Change (7D): ' + coinSaves[n].priceChange1w + '%';
+  var pFive = document.createElement('p');
+  pFive.setAttribute('class', 'padding-left-sm');
+  pFive.textContent = 'Rank: ' + coinSaves[n].rank;
+  var pSix = document.createElement('p');
+  pSix.setAttribute('class', 'padding-left-sm');
+  pSix.textContent = 'Max Supply Available: ' + coinSaves[n].totalSupply + ' ' + coinSaves[n].symbol;
+
+  div.appendChild(divOne);
+  div.appendChild(divSix);
+  div.appendChild(divSeven);
+  divOne.appendChild(divTwo);
+  divOne.appendChild(divThree);
+  divOne.appendChild(divFour);
+  divOne.appendChild(divFive);
+  divTwo.appendChild(divTwoImage);
+  divThree.appendChild(firsth1);
+  divThree.appendChild(firsth3);
+  divFour.appendChild(secondh3);
+  divFour.appendChild(thirdh3);
+  divFive.appendChild(iOne);
+  divFive.appendChild(iTwo);
+  divSix.appendChild(pOne);
+  divSix.appendChild(pTwo);
+  divSix.appendChild(pThree);
+  divSix.appendChild(pFour);
+  divSix.appendChild(pFive);
+  divSix.appendChild(pSix);
+  divSeven.appendChild(graph);
+
+  return div;
+}
+
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
   coinstatRequest();
-  // var trial = document.querySelectorAll('#bitcoin');
-  // console.log('trial logged', trial);
 });
 
 // Create addEventListener of Desktop Cancel Button
@@ -303,64 +364,95 @@ $cancelDesktopButton.addEventListener('click', function (event) {
 });
 
 $queries.addEventListener('click', function (event) {
+  var testing;
   if (event.target.id === 'bitcoin') {
-    createClick();
+    testing = createClick(0);
+    $appendCrypto.append(testing);
     // console.log('Bitcoin clicked!');
   }
-  // if (event.target.id === 'ethereum') {
-  //   console.log('Ethereum clicked!');
-  // }
+  if (event.target.id === 'ethereum') {
+    testing = createClick(1);
+    $appendCrypto.append(testing);
+    // console.log('Ethereum clicked!');
+  }
 
-  // if (event.target.id === 'tether') {
-  //   console.log('Tether clicked!');
-  // }
+  if (event.target.id === 'tether') {
+    testing = createClick(2);
+    $appendCrypto.append(testing);
+    // console.log('Tether clicked!');
+  }
 
-  // if (event.target.id === 'binance-coin') {
-  //   console.log('Binance-coin clicked!');
-  // }
+  if (event.target.id === 'binance-coin') {
+    testing = createClick(3);
+    $appendCrypto.append(testing);
+    // console.log('Binance-coin clicked!');
+  }
 
-  // if (event.target.id === 'cardano') {
-  //   console.log('Cardano clicked!');
-  // }
+  if (event.target.id === 'cardano') {
+    testing = createClick(4);
+    $appendCrypto.append(testing);
+    // console.log('Cardano clicked!');
+  }
 
-  // if (event.target.id === 'dogecoin') {
-  //   console.log('DOGE clicked!');
-  // }
-  // if (event.target.id === 'ripple') {
-  //   console.log('XRP clicked!');
-  // }
+  if (event.target.id === 'dogecoin') {
+    testing = createClick(5);
+    $appendCrypto.append(testing);
+    // console.log('DOGE clicked!');
+  }
 
-  // if (event.target.id === 'usd-coin') {
-  //   console.log('usd-coin clicked!');
-  // }
+  if (event.target.id === 'ripple') {
+    testing = createClick(6);
+    $appendCrypto.append(testing);
+    // console.log('XRP clicked!');
+  }
 
-  // if (event.target.id === 'polkadot') {
-  //   console.log('Polka clicked!');
-  // }
+  if (event.target.id === 'usd-coin') {
+    testing = createClick(7);
+    $appendCrypto.append(testing);
+    // console.log('usd-coin clicked!');
+  }
 
-  // if (event.target.id === 'bitcoin-cash') {
-  //   console.log('Bitcoin-cash clicked!');
-  // }
+  if (event.target.id === 'polkadot') {
+    testing = createClick(8);
+    $appendCrypto.append(testing);
+    // console.log('Polka clicked!');
+  }
 
-  // if (event.target.id === 'uniswap') {
-  //   console.log('Uni clicked!');
-  // }
+  if (event.target.id === 'bitcoin-cash') {
+    testing = createClick(9);
+    $appendCrypto.append(testing);
+  // console.log('Bitcoin-cash clicked!');
+  }
 
-  // if (event.target.id === 'litecoin') {
-  //   console.log('Lite clicked!');
-  // }
+  if (event.target.id === 'uniswap') {
+    testing = createClick(10);
+    $appendCrypto.append(testing);
+  // console.log('Uni clicked!');
+  }
+  if (event.target.id === 'litecoin') {
+    testing = createClick(11);
+    $appendCrypto.append(testing);
 
-  // if (event.target.id === 'solana') {
-  //   console.log('Solana clicked!');
-  // }
+    // console.log('Lite clicked!');
+  }
 
-  // if (event.target.id === 'binance-usd') {
-  //   console.log('Binance clicked!');
-  // }
+  if (event.target.id === 'solana') {
+    testing = createClick(12);
+    $appendCrypto.append(testing);
+    // console.log('Solana clicked!');
+  }
 
-  // if (event.target.id === 'chainlink') {
-  //   console.log('Chain clicked!');
-  // }
+  if (event.target.id === 'binance-usd') {
+    testing = createClick(13);
+    $appendCrypto.append(testing);
+  // console.log('Binance clicked!');
+  }
+
+  if (event.target.id === 'chainlink') {
+    testing = createClick(14);
+    $appendCrypto.append(testing);
+  // console.log('Chain clicked!');
+  }
 });
 
 // Create addEventListener  for the sticky note click.
