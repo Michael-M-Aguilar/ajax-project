@@ -8,6 +8,7 @@ var $mobileAppended = document.querySelector('.mobileAppended');
 var $toggleModalOn = document.querySelector('.toggleModalOn');
 var $toggleMobileModal = document.querySelector('.toggleMobileModalOn');
 var $modal = document.getElementById('modal');
+var $tableView = document.getElementById('tableView');
 var $mobileModal = document.getElementById('mobileModal');
 var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 var $cancelMobileButton = document.querySelector('#cancelMobileModal');
@@ -25,6 +26,8 @@ var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
 var $queries = document.querySelector('.queryPage');
+var $ret = document.querySelector('.ret');
+var $cryptoView = document.getElementById('cryptoView');
 
 // THE START OF DESKTOP FUNCTIONS
 
@@ -280,11 +283,16 @@ function createClick(n) {
   var div = document.createElement('div');
   var divOne = document.createElement('div');
   divOne.setAttribute('class', 'flex space-evenly');
+  var divBack = document.createElement('div');
+  divBack.setAttribute('class', 'align-center');
+  var iBack = document.createElement('i');
+  iBack.setAttribute('class', 'fas fa-arrow-alt-circle-left fa-3x');
+  iBack.setAttribute('id', 'returnButton');
   var divTwo = document.createElement('div');
   divTwo.setAttribute('class', 'align-center');
   var divTwoImage = document.createElement('img');
   divTwoImage.setAttribute('src', coinSaves[n].icon);
-  divTwoImage.setAttribute('class', 'align-center');
+  divTwoImage.setAttribute('class', 'align-center symbol-clicked');
   var divThree = document.createElement('div');
   divThree.setAttribute('class', 'align-center');
   var firsth1 = document.createElement('h1');
@@ -298,10 +306,22 @@ function createClick(n) {
   var thirdh3 = document.createElement('h3');
   thirdh3.textContent = coinSaves[n].priceChange1d + '%';
   var divFive = document.createElement('div');
+  divFive.setAttribute('class', 'symbol-container');
+  var a1 = document.createElement('a');
+  a1.setAttribute('href', coinSaves[n].twitterUrl);
+  a1.setAttribute('class', 'margin-right-sm');
+  var a2 = document.createElement('a');
+  a2.setAttribute('href', coinSaves[n].exp[0]);
+  a2.setAttribute('class', 'margin-right-sm');
+  var a3 = document.createElement('a');
+  a3.setAttribute('href', coinSaves[n].websiteUrl);
+  a3.setAttribute('class', 'margin-right-sm');
   var iOne = document.createElement('i');
-  iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x');
+  iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x margin-right-sm');
   var iTwo = document.createElement('i');
-  iTwo.setAttribute('class', 'fas fa-list fa-4x');
+  iTwo.setAttribute('class', 'fas fa-list fa-4x margin-right-sm');
+  var iThree = document.createElement('i');
+  iThree.setAttribute('class', 'fas fa-external-link-alt fa-4x margin-right-sm');
   var divSix = document.createElement('div');
   divSix.setAttribute('class', 'body flex flex-wrap justify-center');
   var divSeven = document.createElement('div');
@@ -330,6 +350,8 @@ function createClick(n) {
   div.appendChild(divOne);
   div.appendChild(divSix);
   div.appendChild(divSeven);
+  divBack.appendChild(iBack);
+  divOne.appendChild(divBack);
   divOne.appendChild(divTwo);
   divOne.appendChild(divThree);
   divOne.appendChild(divFour);
@@ -339,8 +361,12 @@ function createClick(n) {
   divThree.appendChild(firsth3);
   divFour.appendChild(secondh3);
   divFour.appendChild(thirdh3);
-  divFive.appendChild(iOne);
-  divFive.appendChild(iTwo);
+  a1.appendChild(iOne);
+  a2.appendChild(iTwo);
+  a3.appendChild(iThree);
+  divFive.appendChild(a1);
+  divFive.appendChild(a2);
+  divFive.appendChild(a3);
   divSix.appendChild(pOne);
   divSix.appendChild(pTwo);
   divSix.appendChild(pThree);
@@ -351,6 +377,16 @@ function createClick(n) {
 
   return div;
 }
+
+$ret.addEventListener('click', function (event) {
+  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
+    // console.log('SUCCESS!');
+    $tableView.className = 'container hiddenInMobile';
+    $cryptoView.className = 'cryptoHide';
+    document.location.reload();
+  }
+  // console.log('Event logged: ', event.target.className);
+});
 
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -363,74 +399,87 @@ $cancelDesktopButton.addEventListener('click', function (event) {
   document.querySelector('#desktopForm').reset();
 });
 
+// Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
   var testing;
   if (event.target.id === 'bitcoin') {
     testing = createClick(0);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Bitcoin clicked!');
   }
   if (event.target.id === 'ethereum') {
     testing = createClick(1);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Ethereum clicked!');
   }
 
   if (event.target.id === 'tether') {
     testing = createClick(2);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Tether clicked!');
   }
 
   if (event.target.id === 'binance-coin') {
     testing = createClick(3);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Binance-coin clicked!');
   }
 
   if (event.target.id === 'cardano') {
     testing = createClick(4);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Cardano clicked!');
   }
 
   if (event.target.id === 'dogecoin') {
     testing = createClick(5);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('DOGE clicked!');
   }
 
   if (event.target.id === 'ripple') {
     testing = createClick(6);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('XRP clicked!');
   }
 
   if (event.target.id === 'usd-coin') {
     testing = createClick(7);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('usd-coin clicked!');
   }
 
   if (event.target.id === 'polkadot') {
     testing = createClick(8);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Polka clicked!');
   }
 
   if (event.target.id === 'bitcoin-cash') {
     testing = createClick(9);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Bitcoin-cash clicked!');
   }
 
   if (event.target.id === 'uniswap') {
     testing = createClick(10);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Uni clicked!');
   }
   if (event.target.id === 'litecoin') {
     testing = createClick(11);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
 
     // console.log('Lite clicked!');
@@ -438,18 +487,21 @@ $queries.addEventListener('click', function (event) {
 
   if (event.target.id === 'solana') {
     testing = createClick(12);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Solana clicked!');
   }
 
   if (event.target.id === 'binance-usd') {
     testing = createClick(13);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Binance clicked!');
   }
 
   if (event.target.id === 'chainlink') {
     testing = createClick(14);
+    $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Chain clicked!');
   }
