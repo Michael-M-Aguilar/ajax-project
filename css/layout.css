@@ -1,3 +1,8 @@
+.backgroundColor,
+main {
+  background-color: #fffaf3;
+}
+
 .flex {
   display: flex;
 }
@@ -24,6 +29,10 @@
 
 .margin-right-sm {
   margin-right: 20px;
+}
+
+.margin-left-sm {
+  margin-left: 13px;
 }
 
 .container {

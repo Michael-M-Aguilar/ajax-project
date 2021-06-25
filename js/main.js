@@ -26,7 +26,7 @@ var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
 var $queries = document.querySelector('.queryPage');
-var $ret = document.querySelector('.ret');
+var $return = document.querySelector('.ret');
 var $cryptoView = document.getElementById('cryptoView');
 
 // THE START OF DESKTOP FUNCTIONS
@@ -73,7 +73,7 @@ function renderElements(element) {
   var tdNine = document.createElement('td');
   tdNine.setAttribute('id', element.id);
   var tdNineSticky = document.createElement('i');
-  tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
+  tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable margin-left-sm');
   tdNineSticky.setAttribute('id', element.id);
 
   // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
@@ -437,9 +437,8 @@ function createClick(n) {
   return div;
 }
 
-$ret.addEventListener('click', function (event) {
+$return.addEventListener('click', function (event) {
   if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
-    // console.log('SUCCESS!');
     $tableView.className = 'container hiddenInMobile';
     $cryptoView.className = 'cryptoHide';
     document.location.reload();
@@ -461,82 +460,82 @@ $cancelDesktopButton.addEventListener('click', function (event) {
 // Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
   var testing;
-  if (event.target.id === 'bitcoin') {
+  if (event.target.id === 'bitcoin' && event.target.tagName !== 'I') {
     testing = createClick(0);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Bitcoin clicked!');
   }
-  if (event.target.id === 'ethereum') {
+  if (event.target.id === 'ethereum' && event.target.tagName !== 'I') {
     testing = createClick(1);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Ethereum clicked!');
   }
 
-  if (event.target.id === 'tether') {
+  if (event.target.id === 'tether' && event.target.tagName !== 'I') {
     testing = createClick(2);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Tether clicked!');
   }
 
-  if (event.target.id === 'binance-coin') {
+  if (event.target.id === 'binance-coin' && event.target.tagName !== 'I') {
     testing = createClick(3);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Binance-coin clicked!');
   }
 
-  if (event.target.id === 'cardano') {
+  if (event.target.id === 'cardano' && event.target.tagName !== 'I') {
     testing = createClick(4);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Cardano clicked!');
   }
 
-  if (event.target.id === 'dogecoin') {
+  if (event.target.id === 'dogecoin' && event.target.tagName !== 'I') {
     testing = createClick(5);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('DOGE clicked!');
   }
 
-  if (event.target.id === 'ripple') {
+  if (event.target.id === 'ripple' && event.target.tagName !== 'I') {
     testing = createClick(6);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('XRP clicked!');
   }
 
-  if (event.target.id === 'usd-coin') {
+  if (event.target.id === 'usd-coin' && event.target.tagName !== 'I') {
     testing = createClick(7);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('usd-coin clicked!');
   }
 
-  if (event.target.id === 'polkadot') {
+  if (event.target.id === 'polkadot' && event.target.tagName !== 'I') {
     testing = createClick(8);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Polka clicked!');
   }
 
-  if (event.target.id === 'bitcoin-cash') {
+  if (event.target.id === 'bitcoin-cash' && event.target.tagName !== 'I') {
     testing = createClick(9);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Bitcoin-cash clicked!');
   }
 
-  if (event.target.id === 'uniswap') {
+  if (event.target.id === 'uniswap' && event.target.tagName !== 'I') {
     testing = createClick(10);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Uni clicked!');
   }
-  if (event.target.id === 'litecoin') {
+  if (event.target.id === 'litecoin' && event.target.tagName !== 'I') {
     testing = createClick(11);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
@@ -544,21 +543,21 @@ $queries.addEventListener('click', function (event) {
     // console.log('Lite clicked!');
   }
 
-  if (event.target.id === 'solana') {
+  if (event.target.id === 'solana' && event.target.tagName !== 'I') {
     testing = createClick(12);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
     // console.log('Solana clicked!');
   }
 
-  if (event.target.id === 'binance-usd') {
+  if (event.target.id === 'binance-usd' && event.target.tagName !== 'I') {
     testing = createClick(13);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
   // console.log('Binance clicked!');
   }
 
-  if (event.target.id === 'chainlink') {
+  if (event.target.id === 'chainlink' && event.target.tagName !== 'I') {
     testing = createClick(14);
     $tableView.className = 'tableHide';
     $appendCrypto.append(testing);
