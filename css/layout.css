@@ -1,8 +1,3 @@
-.backgroundColor,
-main {
-  background-color: #fffaf3;
-}
-
 .flex {
   display: flex;
 }
@@ -52,12 +47,7 @@ main {
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    width: 767px;
-  }
-
   /* To show the mobile version on Chrome. */
-
   .hiddenInDesktop {
     display: none;
   }
@@ -116,7 +106,7 @@ main {
   transform: translateX(-50%);
   background-color: white;
   width: 50%;
-  height: 34%;
+  height: 20%;
 }
 
 .trial {
@@ -142,11 +132,12 @@ main {
 .mobileModalContent {
   position: relative;
   top: 40%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 15%;
+
+  /* transform: translateX(-50%); */
   background-color: white;
-  width: 70%;
-  height: 20%;
+  width: 100%;
+  height: 40%;
 }
 
 .symbol-container {
