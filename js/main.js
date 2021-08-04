@@ -282,7 +282,7 @@ function percentSortColumn(a) {
 function createClick(n) {
   var div = document.createElement('div');
   var divOne = document.createElement('div');
-  divOne.setAttribute('class', 'flex space-evenly');
+  divOne.setAttribute('class', 'flex space-around');
   var divBack = document.createElement('div');
   divBack.setAttribute('class', 'align-center');
   var iBack = document.createElement('i');
@@ -439,8 +439,8 @@ function createClick(n) {
 
 $return.addEventListener('click', function (event) {
   if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
-    $tableView.className = 'container hiddenInMobile';
-    $cryptoView.className = 'cryptoHide';
+    $tableView.className = 'container hidden-in-mobile';
+    $cryptoView.className = 'crypto-hide';
   }
   // console.log('Event logged: ', event.target.className);
 });
@@ -461,82 +461,82 @@ $queries.addEventListener('click', function (event) {
   var testing;
   if (event.target.id === 'bitcoin' && event.target.tagName !== 'I') {
     testing = createClick(0);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Bitcoin clicked!');
   }
   if (event.target.id === 'ethereum' && event.target.tagName !== 'I') {
     testing = createClick(1);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Ethereum clicked!');
   }
 
   if (event.target.id === 'tether' && event.target.tagName !== 'I') {
     testing = createClick(2);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Tether clicked!');
   }
 
   if (event.target.id === 'binance-coin' && event.target.tagName !== 'I') {
     testing = createClick(3);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Binance-coin clicked!');
   }
 
   if (event.target.id === 'cardano' && event.target.tagName !== 'I') {
     testing = createClick(4);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Cardano clicked!');
   }
 
   if (event.target.id === 'dogecoin' && event.target.tagName !== 'I') {
     testing = createClick(5);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('DOGE clicked!');
   }
 
   if (event.target.id === 'ripple' && event.target.tagName !== 'I') {
     testing = createClick(6);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('XRP clicked!');
   }
 
   if (event.target.id === 'usd-coin' && event.target.tagName !== 'I') {
     testing = createClick(7);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('usd-coin clicked!');
   }
 
   if (event.target.id === 'polkadot' && event.target.tagName !== 'I') {
     testing = createClick(8);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Polka clicked!');
   }
 
   if (event.target.id === 'bitcoin-cash' && event.target.tagName !== 'I') {
     testing = createClick(9);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
   // console.log('Bitcoin-cash clicked!');
   }
 
   if (event.target.id === 'uniswap' && event.target.tagName !== 'I') {
     testing = createClick(10);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
   // console.log('Uni clicked!');
   }
   if (event.target.id === 'litecoin' && event.target.tagName !== 'I') {
     testing = createClick(11);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
 
     // console.log('Lite clicked!');
@@ -544,21 +544,21 @@ $queries.addEventListener('click', function (event) {
 
   if (event.target.id === 'solana' && event.target.tagName !== 'I') {
     testing = createClick(12);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
     // console.log('Solana clicked!');
   }
 
   if (event.target.id === 'binance-usd' && event.target.tagName !== 'I') {
     testing = createClick(13);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
   // console.log('Binance clicked!');
   }
 
   if (event.target.id === 'chainlink' && event.target.tagName !== 'I') {
     testing = createClick(14);
-    $tableView.className = 'tableHide';
+    $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
   // console.log('Chain clicked!');
   }
@@ -567,7 +567,7 @@ $queries.addEventListener('click', function (event) {
 // Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
-    $modal.className = 'mobileModalContainerOn';
+    $modal.className = 'modalContainerOn';
     data.currentCoin = event.target.getAttribute('id');
     for (var i = 0; i < data.entries.length; i++) {
       if (data.currentCoin === data.entries[i].coinID) {
@@ -625,12 +625,12 @@ function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
   divOne.setAttribute('class', 'flex justify-center selector');
   var divTwo = document.createElement('div');
-  divTwo.setAttribute('class', 'mobileSelector align-center padding-left');
+  divTwo.setAttribute('class', 'mobile-selector align-center padding-left');
   var imgOne = document.createElement('img');
-  imgOne.setAttribute('class', 'mobileLogo');
+  imgOne.setAttribute('class', 'mobile-logo');
   imgOne.setAttribute('src', mobileElement.icon);
   var divThree = document.createElement('div');
-  divThree.setAttribute('class', 'mobileSelector align-center padding-left');
+  divThree.setAttribute('class', 'mobile-selector align-center padding-left');
   var h3One = document.createElement('h3');
   h3One.setAttribute('class', 'letters');
   h3One.textContent = mobileElement.symbol;
@@ -638,7 +638,7 @@ function mobileRenderElements(mobileElement) {
   h3Two.setAttribute('class', 'letters');
   h3Two.textContent = mobileElement.name;
   var divFour = document.createElement('div');
-  divFour.setAttribute('class', 'mobileSelector align-center padding-left padding-bottom');
+  divFour.setAttribute('class', 'mobile-selector align-center padding-left padding-bottom');
   var h3Three = document.createElement('h3');
   h3Three.setAttribute('class', 'numbers');
   h3Three.textContent = '$' + Math.ceil(mobileElement.price * 100) / 100;

@@ -18,7 +18,7 @@
 </head>
 <body>
   <header>
-  <div class="flex justify-center hiddenInMobile backgroundColor">
+  <div class="flex justify-center hidden-in-mobile backgroundColor">
     <div>
       <img src="images/wsb chad 2.png" alt="wsbLogo">
     </div>
@@ -31,7 +31,7 @@
   </div>
   </header>
   <main>
-    <div id="tableView" class="container hiddenInMobile" data-view="list-page">
+    <div id="tableView" class="container hidden-in-mobile" data-view="list-page">
       <div class="forTable flex justify-center">
         <table id="desktopTable">
           <thead>
@@ -53,7 +53,7 @@
       </div>
       <div id="modal" class="modalContainerOff">
         <div class="modalContent">
-          <div class="flex flex-column">
+          <div class="flex flex-column background-color">
             <div class="modalText">
               <h3 class="text-align-center">Insert private note below.</h3>
             </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div id="cryptoView" class="container appendCrypto hiddenInMobile ret">
+    <div id="cryptoView" class="container appendCrypto hidden-in-mobile ret">
     </div>
     <div class="container hiddenInDesktop mobileAppended toggleMobileModalOn" data-view="mobile-list-page">
       <div class="mobileHeader flex justify-center">
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div id="mobileModal" class="mobileModalContainerOff">
-      <div class="mobileModalContent flex flex-column">
+      <div class="mobile-modal-content flex flex-column">
         <div class="textAreaDiv align-center hiddenInDesktop">
           <div>
             <h3 class="text-align-center">Insert private note below.</h3>
@@ -97,7 +97,7 @@
             <label for="mobileNotes"></label>
             <textarea id="mobileNotes" name="mobileNotes" class="mobileNotes" optional></textarea>
           </div>
-          <div class="buttons align-center hiddenInDesktop">
+          <div class="buttons align-center hiddenInDesktop flex space-around">
             <button id="cancelMobileModal" class="cancelButton cancelMobileButton button textButton">CANCEL</button>
             <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
           </div>

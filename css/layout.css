@@ -18,7 +18,7 @@
   justify-content: space-between;
 }
 
-.space-evenly {
+.space-around {
   justify-content: space-around;
 }
 
@@ -47,41 +47,39 @@
 }
 
 @media screen and (min-width: 768px) {
-  /* To show the mobile version on Chrome. */
   .hiddenInDesktop {
     display: none;
   }
 }
 
 /* Mobile Related */
-.mobileLogo {
+.mobile-logo {
   height: 90px;
   width: 90px;
 }
 
-.tableHide {
+.table-hide {
   display: none;
 }
 
-.cryptoHide {
+.crypto-hide {
   display: none;
 }
 
-.mobileSelector {
+.mobile-selector {
   width: 100%;
   height: 100%;
   padding-bottom: 25px;
 }
 
-@media screen and (max-width: 768px) {
-  thead,
-  /* To hide the desktop List.*/
-  .hiddenInMobile {
+@media screen and (max-width: 767px) {
+  /* To hide the desktop List. */
+  .hidden-in-mobile {
     display: none;
   }
 
   .container {
-    min-width: 520px;
+    min-width: 620px;
   }
 }
 
@@ -105,8 +103,8 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  width: 50%;
-  height: 20%;
+  min-width: 50%;
+  min-height: 20%;
 }
 
 .trial {
@@ -121,23 +119,22 @@
 
 .mobileModalContainerOn {
   display: inline;
-  top: 0;
-  left: 0;
+  top: 30%;
+  left: 19%;
   align-items: center;
   position: fixed;
   width: 100vw;
   height: 100vh;
 }
 
-.mobileModalContent {
+.mobile-modal-content {
   position: relative;
-  top: 40%;
-  left: 15%;
 
-  /* transform: translateX(-50%); */
+  /* top: 40%;
+  left: 50%; */
   background-color: white;
-  width: 100%;
-  height: 40%;
+  min-width: 50%;
+  min-height: 20%;
 }
 
 .symbol-container {
