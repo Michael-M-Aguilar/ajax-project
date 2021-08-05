@@ -6,11 +6,13 @@ let index;
 // Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
 var $appendCrypto = document.querySelector('.append-crypto');
+var $appendMobileP = document.querySelector('.append-mpage');
 var $mobileAppended = document.querySelector('.mobile-appended');
 var $toggleModalOn = document.querySelector('.toggle-modal-on');
 var $toggleMobileModal = document.querySelector('.toggle-mobile-modal-on');
 var $modal = document.getElementById('modal');
 var $tableView = document.getElementById('tableView');
+var $mobileView = document.getElementById('mobileView');
 var $mobileModal = document.getElementById('mobileModal');
 var $cancelDesktopButton = document.querySelector('#cancelDesktopModal');
 var $cancelMobileButton = document.querySelector('#cancelMobileModal');
@@ -29,6 +31,7 @@ var $sort7d = document.querySelector('.sort-7d');
 var $queries = document.querySelector('.query-page');
 // var $return = document.querySelector('.ret');
 var $cryptoView = document.getElementById('cryptoView');
+var $mobileCryptoView = document.getElementById('mobileCryptoView');
 var $spinner = document.querySelector('.spinner');
 var $mspinner = document.querySelector('.mspinner');
 
@@ -459,15 +462,6 @@ function createClick(n) {
 
   return div;
 }
-// In Process of correcting the DOM.
-$cryptoView.addEventListener('click', function (event) {
-  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
-    $tableView.className = 'container hidden-in-mobile';
-    while ($cryptoView.firstChild) {
-      $cryptoView.removeChild($cryptoView.firstChild);
-    }
-  }
-});
 
 // When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -499,6 +493,34 @@ $queries.addEventListener('click', function (event) {
     initiator = createClick(index);
     $tableView.className = 'table-hide';
     $appendCrypto.append(initiator);
+  }
+});
+
+$mobileAppended.addEventListener('click', function (event) {
+  // let test;
+  if (event.target.id) {
+    idMatcher();
+    $mobileView.className = 'table-hide';
+    $appendMobileP.append(createClick(index));
+  }
+});
+
+$mobileCryptoView.addEventListener('click', function (event) {
+  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
+    $mobileView.className = 'container hidden-in-desktop';
+    while ($mobileCryptoView.firstChild) {
+      $mobileCryptoView.removeChild($mobileCryptoView.firstChild);
+    }
+  }
+});
+
+// In Process of correcting the DOM.
+$cryptoView.addEventListener('click', function (event) {
+  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
+    $tableView.className = 'container hidden-in-mobile';
+    while ($cryptoView.firstChild) {
+      $cryptoView.removeChild($cryptoView.firstChild);
+    }
   }
 });
 
@@ -559,26 +581,35 @@ $sort7d.addEventListener('click', function (event) {
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
   divOne.setAttribute('class', 'flex justify-center selector');
+  divOne.setAttribute('id', mobileElement.id);
   var divTwo = document.createElement('div');
   divTwo.setAttribute('class', 'mobile-selector align-center padding-left');
+  divTwo.setAttribute('id', mobileElement.id);
   var imgOne = document.createElement('img');
   imgOne.setAttribute('class', 'mobile-logo');
   imgOne.setAttribute('src', mobileElement.icon);
+  imgOne.setAttribute('id', mobileElement.id);
   var divThree = document.createElement('div');
   divThree.setAttribute('class', 'mobile-selector align-center padding-left');
+  divThree.setAttribute('id', mobileElement.id);
   var h3One = document.createElement('h3');
   h3One.setAttribute('class', 'letters');
+  h3One.setAttribute('id', mobileElement.id);
   h3One.textContent = mobileElement.symbol;
   var h3Two = document.createElement('h3');
   h3Two.setAttribute('class', 'letters');
+  h3Two.setAttribute('id', mobileElement.id);
   h3Two.textContent = mobileElement.name;
   var divFour = document.createElement('div');
   divFour.setAttribute('class', 'mobile-selector align-center padding-left padding-bottom');
+  divFour.setAttribute('id', mobileElement.id);
   var h3Three = document.createElement('h3');
   h3Three.setAttribute('class', 'numbers');
+  h3Three.setAttribute('id', mobileElement.id);
   h3Three.textContent = '$' + Math.ceil(mobileElement.price * 100) / 100;
   var h3Four = document.createElement('h3');
   h3Four.setAttribute('class', 'numbers');
+  h3Four.setAttribute('id', mobileElement.id);
   h3Four.textContent = mobileElement.priceChange1d + '%';
   var tdSticky = document.createElement('i');
   tdSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note padding-for-table');
