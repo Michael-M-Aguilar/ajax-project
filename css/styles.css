@@ -7,15 +7,6 @@ html {
   background-color: rgba(255, 255, 255, 0.63);
 }
 
-.tooltip {
-  visibility: hidden;
-}
-
-.tooltip:hover,
-.tooltiptext {
-  visibility: visible;
-}
-
 table {
   border-collapse: collapse;
 }
@@ -26,8 +17,7 @@ thead {
 }
 
 td,
-.selector,
-.logoContainer {
+.selector {
   background-color: #f3f1f1;
 }
 
@@ -51,28 +41,6 @@ td,
 }
 
 .spinner::before {
-  animation: 2s linear infinite spinner;
-  border: solid 3px #eee;
-  border-bottom-color: #ef6565;
-  border-radius: 50%;
-  content: "";
-  height: 90px;
-  left: 50%;
-  opacity: inherit;
-  position: absolute;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  transform-origin: center;
-  width: 90px;
-  will-change: transform;
-}
-
-.mspinner {
-  opacity: 1;
-  transition: opacity linear 0.1s;
-}
-
-.mspinner::before {
   animation: 2s linear infinite spinner;
   border: solid 3px #eee;
   border-bottom-color: #ef6565;
@@ -127,16 +95,8 @@ th,
   padding-bottom: 1.5rem;
 }
 
-.padding-top-sm {
-  padding-top: 0.3rem;
-}
-
 .padding-top-med {
   padding-top: 1.8rem;
-}
-
-.padding-bot-med {
-  padding-bottom: 1.5rem;
 }
 
 .padding-left-med {
@@ -170,10 +130,10 @@ th,
 .button {
   border-radius: 14px;
   border: 0 solid;
-  width: 35%;
+  width: 45%;
   height: 40px;
   font-family: 'Work Sans', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 textarea {
@@ -220,6 +180,22 @@ button,
   cursor: pointer;
 }
 
+.hovered {
+  transition: ease 1.4s;
+}
+
+.hovered:hover {
+  transform: scale(1.03);
+}
+
+.indiv-hover {
+  transition: ease 1s;
+}
+
+.indiv-hover:hover {
+  transform: scale(1.1);
+}
+
 /* Mobile Related */
 
 /* Red/Green feature for Mobile Only Numbers */
@@ -239,4 +215,26 @@ button,
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.4rem;
+}
+
+.mspinner {
+  opacity: 1;
+  transition: opacity linear 0.1s;
+}
+
+.mspinner::before {
+  animation: 2s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #ef6565;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 90px;
+  will-change: transform;
 }
