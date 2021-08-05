@@ -50,7 +50,7 @@ function renderElements(element) {
   tdTwo.setAttribute('id', element.id);
   tdTwo.textContent = element.name;
   var divTwo = document.createElement('div');
-  divTwo.setAttribute('class', 'padding-top-sm');
+  divTwo.setAttribute('class', 'letters padding-for-table clickable');
   divTwo.textContent = element.symbol;
   var tdThree = document.createElement('td');
   tdThree.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
@@ -75,7 +75,7 @@ function renderElements(element) {
   var tdNine = document.createElement('td');
   tdNine.setAttribute('id', element.id);
   var tdNineSticky = document.createElement('i');
-  tdNineSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note padding-for-table margin-left-sm');
+  tdNineSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note margin-left-sm');
   tdNineSticky.setAttribute('id', element.id);
 
   // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
@@ -103,7 +103,7 @@ function renderElements(element) {
     tdEight.className = 'losses';
   }
   trAppended.appendChild(tdOne);
-  // tdOne.appendChild(tdOneImage)
+  tdOne.appendChild(tdOneImage);
   tdOne.appendChild(divOne);
   divOne.appendChild(tdOneImage);
   tdTwo.appendChild(divTwo);
@@ -139,22 +139,6 @@ function coinstatRequest() {
   });
   xhr.send();
 }
-
-// function bitcoinGraph() {
-//   var xhrb = new XMLHttpRequest();
-//   xhrb.open('GET', '');
-//   xhrb.responseType = 'json';
-//   xhrb.addEventListener('error', function () {
-//     'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
-//   });
-//   xhrb.addEventListener('load', function () {
-//     for (var i = 0; i < xhrb.response.values; i++) {
-//       // var test = renderElements(xhr.response.coins[i]);
-//       // $appended.append(test);
-//     }
-//     dataSave = xhrb.response.values;
-//   });
-// }
 
 // Function to help sort names
 function nameSortColumn(a) {
@@ -309,7 +293,7 @@ function createClick(n) {
   var div = document.createElement('div');
   div.setAttribute('id', 'removed');
   var divOne = document.createElement('div');
-  divOne.setAttribute('class', 'flex space-around');
+  divOne.setAttribute('class', 'flex space-around padding-top-med');
   var divBack = document.createElement('div');
   divBack.setAttribute('class', 'align-center');
   var iBack = document.createElement('i');
@@ -340,14 +324,26 @@ function createClick(n) {
   var divFive = document.createElement('div');
   divFive.setAttribute('class', 'symbol-container');
   var a1 = document.createElement('a');
-  a1.setAttribute('href', coinSaves[index].twitterUrl);
-  a1.setAttribute('class', 'margin-right-sm');
+  if (coinSaves[index].twitterUrl) {
+    a1.setAttribute('href', coinSaves[index].twitterUrl);
+    a1.setAttribute('class', 'margin-right-sm');
+  } else {
+    a1.setAttribute('class', 'margin-right-sm');
+  }
   var a2 = document.createElement('a');
-  a2.setAttribute('href', coinSaves[index].exp[0]);
-  a2.setAttribute('class', 'margin-right-sm');
+  if (coinSaves[index].exp[0]) {
+    a2.setAttribute('href', coinSaves[index].exp[0]);
+    a2.setAttribute('class', 'margin-right-sm');
+  } else {
+    a2.setAttribute('class', 'margin-right-sm');
+  }
   var a3 = document.createElement('a');
-  a3.setAttribute('href', coinSaves[index].websiteUrl);
-  a3.setAttribute('class', 'margin-right-sm');
+  if (coinSaves[index].websiteUrl) {
+    a3.setAttribute('href', coinSaves[index].websiteUrl);
+    a3.setAttribute('class', 'margin-right-sm');
+  } else {
+    a3.setAttribute('class', 'margin-right-sm');
+  }
   var iOne = document.createElement('i');
   iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x margin-right-sm');
   var iTwo = document.createElement('i');
@@ -355,9 +351,9 @@ function createClick(n) {
   var iThree = document.createElement('i');
   iThree.setAttribute('class', 'fas fa-external-link-alt fa-4x margin-right-sm');
   var divSix = document.createElement('div');
-  divSix.setAttribute('class', 'body flex flex-wrap justify-center');
+  divSix.setAttribute('class', 'body flex flex-wrap justify-center click-bot-top-pad');
   var divSeven = document.createElement('div');
-  divSeven.setAttribute('class', 'graph flex justify-center');
+  divSeven.setAttribute('class', 'graph flex justify-center padding-bot-med');
   var graph = document.createElement('img');
   graph.setAttribute('src', '/images/Amazon_1.png');
 
@@ -381,22 +377,22 @@ function createClick(n) {
   spanSix.textContent = coinSaves[index].totalSupply + ' ' + coinSaves[index].symbol;
 
   var pOne = document.createElement('p');
-  pOne.setAttribute('class', 'padding-left-sm letters');
+  pOne.setAttribute('class', 'padding-left-med letters');
   pOne.textContent = 'Market Cap: ';
   var pTwo = document.createElement('p');
-  pTwo.setAttribute('class', 'padding-left-sm letters');
+  pTwo.setAttribute('class', 'padding-left-med letters');
   pTwo.textContent = 'Price Change (1H): ';
   var pThree = document.createElement('p');
-  pThree.setAttribute('class', 'padding-left-sm letters');
+  pThree.setAttribute('class', 'padding-left-med letters');
   pThree.textContent = 'Price Change (24H): ';
   var pFour = document.createElement('p');
-  pFour.setAttribute('class', 'padding-left-sm letters');
+  pFour.setAttribute('class', 'padding-left-med letters');
   pFour.textContent = 'Price Change (7D): ';
   var pFive = document.createElement('p');
-  pFive.setAttribute('class', 'padding-left-sm letters');
+  pFive.setAttribute('class', 'padding-left-med letters');
   pFive.textContent = 'Rank: ';
   var pSix = document.createElement('p');
-  pSix.setAttribute('class', 'padding-left-sm letters');
+  pSix.setAttribute('class', 'padding-left-med letters');
   pSix.textContent = 'Max Supply Available: ';
 
   pOne.appendChild(spanFour);
@@ -498,7 +494,6 @@ function idMatcher() {
 // Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
   let initiator;
-
   if (event.target.className === 'numbers text-align-center padding-for-table clickable' || event.target.className === 'letters padding-for-table clickable') {
     idMatcher();
     initiator = createClick(index);

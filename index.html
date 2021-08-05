@@ -17,11 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-  <div class="flex justify-center hidden-in-mobile">
-    <div>
-      <p class="letter-header">Top Cryptos Today</p>
-    </div>
+  <header class="container">
+  <div class="flex justify-center">
+    <h1 class="letter-header">Top Cryptos Today</h1>
   </div>
   </header>
   <main>
@@ -34,9 +32,9 @@
               <th class="letters">Name <i class="fas fa-sort sort-name"></i></th>
               <th class="letters">Price <i class="fas fa-sort sort-price"></i></th>
               <th class="letters">Market Cap <i class="fas fa-sort sort-cap"></i></th>
-              <th class="letters">Price Change 1H <i class="fas fa-sort sort-1h"></i></th>
-              <th class="letters">Price Change 24H <i class="fas fa-sort sort-24h"></i></th>
-              <th class="letters">Price Change 7D <i class="fas fa-sort sort-7d"></i></th>
+              <th class="letters max-width-numbers">Price Change 1H <i class="fas fa-sort sort-1h"></i></th>
+              <th class="letters max-width-numbers">Price Change 24H <i class="fas fa-sort sort-24h"></i></th>
+              <th class="letters max-width-numbers">Price Change 7D <i class="fas fa-sort sort-7d"></i></th>
               <th class="letters">Notes</th>
             </tr>
           </thead>
@@ -57,7 +55,7 @@
                 <label for="desktopNotes"></label>
                 <textarea id="desktopNotes" name="desktopNotes" optional></textarea>
               </div>
-              <div class="buttons flex justify-center">
+              <div class="buttons flex space-around">
                 <button id="cancelDesktopModal" class="cancel-button button">CANCEL</button>
                 <button id="saveDesktopModal" type="submit" class="save-button button">SAVE</button>
               </div>
@@ -70,30 +68,29 @@
     </div>
     <div class="container hidden-in-desktop mobile-appended toggle-mobile-modal-on" data-view="mobile-list-page">
       <div class="flex justify-center">
-        <div>
-          <h1>Top Cryptos Today</h1>
-        </div>
         <div class="mspinner"></div>
+        <div id="mobileModal" class="mobile-modal-container-off hidden-in-desktop">
+          <div class="mobile-modal-content flex flex-column hidden-in-desktop">
+            <div class="align-center hidden-in-desktop">
+              <div>
+                <h3 class="text-align-center">Insert private note below.</h3>
+              </div>
+              <form id="mobileForm">
+                <div>
+                  <label for="mobileNotes"></label>
+                  <textarea id="mobileNotes" name="mobileNotes" optional></textarea>
+                </div>
+                <div class="align-center hidden-in-desktop flex space-around">
+                  <button id="cancelMobileModal" class="cancel-button button">CANCEL</button>
+                  <button type="submit" class="save-button button">SAVE</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="mobileModal" class="mobile-modal-container-off hidden-in-desktop">
-      <div class="mobile-modal-content flex flex-column hidden-in-desktop">
-        <div class="align-center hidden-in-desktop">
-          <div>
-            <h3 class="text-align-center">Insert private note below.</h3>
-          </div>
-        <form id="mobileForm">
-          <div>
-            <label for="mobileNotes"></label>
-            <textarea id="mobileNotes" name="mobileNotes" optional></textarea>
-          </div>
-          <div class="align-center hidden-in-desktop flex space-around">
-            <button id="cancelMobileModal" class="cancel-button button">CANCEL</button>
-            <button type="submit" class="save-button button">SAVE</button>
-          </div>
-        </form>
-        </div>
-      </div>
+    <div id="mobileCryptoView" class="container hidden-in-desktop ret">
     </div>
   </main>
   <script src="js/data.js"></script>

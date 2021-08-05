@@ -3,6 +3,19 @@ html {
   background-color: #fffaf3;
 }
 
+#cryptoView {
+  background-color: rgba(255, 255, 255, 0.63);
+}
+
+.tooltip {
+  visibility: hidden;
+}
+
+.tooltip:hover,
+.tooltiptext {
+  visibility: visible;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -98,27 +111,44 @@ th,
 
 .letter-header {
   font-family: 'Karla', sans-serif;
-  font-size: 3rem;
+  font-size: 4rem;
+}
+
+.max-width-numbers {
+  max-width: 120px;
 }
 
 .align-center {
   align-self: center;
 }
 
+.click-bot-top-pad {
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+}
+
 .padding-top-sm {
   padding-top: 0.3rem;
 }
 
-.padding-left-sm {
-  padding-left: 25px;
+.padding-top-med {
+  padding-top: 1.8rem;
+}
+
+.padding-bot-med {
+  padding-bottom: 1.5rem;
+}
+
+.padding-left-med {
+  padding-left: 2rem;
 }
 
 .padding-left {
-  padding-left: 50px;
+  padding-left: 2rem;
 }
 
 .padding-bottom {
-  padding-bottom: 10px;
+  padding-bottom: 0.7rem;
 }
 
 .padding-for-table {
@@ -140,10 +170,10 @@ th,
 .button {
   border-radius: 14px;
   border: 0 solid;
-  width: 150px;
+  width: 35%;
   height: 40px;
   font-family: 'Work Sans', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 textarea {
@@ -185,6 +215,7 @@ textarea {
 button,
 .fa-sticky-note,
 .clickable,
+#returnButton,
 .fa-sort {
   cursor: pointer;
 }
@@ -192,7 +223,6 @@ button,
 /* Mobile Related */
 
 /* Red/Green feature for Mobile Only Numbers */
-
 .mobile-tendies {
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
