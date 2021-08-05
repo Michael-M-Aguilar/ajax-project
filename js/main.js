@@ -36,7 +36,7 @@ function renderElements(element) {
   var trAppended = document.createElement('tr');
   var tdOne = document.createElement('td');
   tdOne.setAttribute('class', 'numbers padding-for-table clickable');
-  tdOne.setAttribute('id', element.id);
+  tdOne.setAttribute('id', element.id + ' click');
   tdOne.textContent = element.rank;
   var tdOneImage = document.createElement('img');
   tdOneImage.setAttribute('src', element.icon);
@@ -56,7 +56,7 @@ function renderElements(element) {
   tdFive.textContent = '$' + Math.ceil(element.marketCap * 100) / 100;
   var tdSix = document.createElement('td');
   tdSix.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
-  tdSix.setAttribute('id', 'element.id');
+  tdSix.setAttribute('id', element.id);
   tdSix.textContent = element.priceChange1h + '%';
   var tdSeven = document.createElement('td');
   tdSeven.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
@@ -280,7 +280,7 @@ function percentSortColumn(a) {
 }
 
 // Function to create DOM tree when crypto is clicked
-function createClick() {
+function createClick(n) {
   var div = document.createElement('div');
   div.setAttribute('id', 'removed');
   var divOne = document.createElement('div');
@@ -471,101 +471,14 @@ function idMatcher() {
 
 // Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
-  var testing;
+  let testing;
 
-  if (event.target.id === 'bitcoin' && event.target.tagName !== 'I') {
+  if (event.target.className === 'numbers text-align-center padding-for-table clickable' || event.target.className === 'letters padding-for-table clickable') {
     idMatcher();
     testing = createClick(index);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
   }
-  if (event.target.id === 'ethereum' && event.target.tagName !== 'I') {
-    idMatcher();
-    testing = createClick(1);
-    $tableView.className = 'table-hide';
-    $appendCrypto.append(testing);
-  }
-
-  if (event.target.id === 'tether' && event.target.tagName !== 'I') {
-    idMatcher();
-    testing = createClick(2);
-    $tableView.className = 'table-hide';
-    $appendCrypto.append(testing);
-  }
-
-  // if (event.target.id === 'binance-coin' && event.target.tagName !== 'I') {
-  //   idMatcher();
-  //   testing = createClick(3);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'cardano' && event.target.tagName !== 'I') {
-  //   testing = createClick(4);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'dogecoin' && event.target.tagName !== 'I') {
-  //   testing = createClick(5);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'ripple' && event.target.tagName !== 'I') {
-  //   testing = createClick(6);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'usd-coin' && event.target.tagName !== 'I') {
-  //   testing = createClick(7);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'polkadot' && event.target.tagName !== 'I') {
-  //   testing = createClick(8);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'bitcoin-cash' && event.target.tagName !== 'I') {
-  //   testing = createClick(9);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  //   idMatcher();
-  // }
-
-  // if (event.target.id === 'uniswap' && event.target.tagName !== 'I') {
-  //   testing = createClick(10);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-  // if (event.target.id === 'litecoin' && event.target.tagName !== 'I') {
-  //   testing = createClick(11);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-
-  // }
-
-  // if (event.target.id === 'solana' && event.target.tagName !== 'I') {
-  //   testing = createClick(12);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'binance-usd' && event.target.tagName !== 'I') {
-  //   testing = createClick(13);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
-
-  // if (event.target.id === 'chainlink' && event.target.tagName !== 'I') {
-  //   testing = createClick(14);
-  //   $tableView.className = 'table-hide';
-  //   $appendCrypto.append(testing);
-  // }
 });
 
 // Create addEventListener  for the sticky note click.
@@ -606,16 +519,16 @@ $sortPrice.addEventListener('click', function (event) {
   priceSortColumn(2);
 });
 $sortCap.addEventListener('click', function (event) {
-  priceSortColumn(4);
+  priceSortColumn(3);
 });
 $sort1h.addEventListener('click', function (event) {
-  percentSortColumn(5);
+  percentSortColumn(4);
 });
 $sort24h.addEventListener('click', function (event) {
-  percentSortColumn(6);
+  percentSortColumn(5);
 });
 $sort7d.addEventListener('click', function (event) {
-  percentSortColumn(7);
+  percentSortColumn(6);
 });
 
 // END OF DESKTOP FUNCTIONS
