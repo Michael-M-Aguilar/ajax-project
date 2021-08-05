@@ -357,8 +357,6 @@ function createClick(n) {
   divSix.setAttribute('class', 'body flex flex-wrap justify-center click-bot-top-pad');
   var divSeven = document.createElement('div');
   divSeven.setAttribute('class', 'graph flex justify-center padding-bot-med');
-  var graph = document.createElement('img');
-  graph.setAttribute('src', '/images/Amazon_1.png');
 
   var spanOne = document.createElement('span');
   spanOne.setAttribute('class', 'numbers');
@@ -431,7 +429,6 @@ function createClick(n) {
   divSix.appendChild(pFour);
   divSix.appendChild(pFive);
   divSix.appendChild(pSix);
-  divSeven.appendChild(graph);
 
   if (coinSaves[index].priceChange1h === 0) {
     spanOne.className = 'neutral';
