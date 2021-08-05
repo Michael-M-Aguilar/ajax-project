@@ -1,4 +1,3 @@
-// Declare a variable to append my DOM tree too.
 // Coinsaves serves as a storage for the coins API request.
 var coinSaves;
 // Where the DOM tree appends too.
@@ -20,7 +19,6 @@ var $table = document.getElementById('desktopTable');
 var $sortRank = document.querySelector('.sort-rank');
 var $sortName = document.querySelector('.sort-name');
 var $sortPrice = document.querySelector('.sort-price');
-var $sortVolume = document.querySelector('.sort-volume');
 var $sortCap = document.querySelector('.sort-cap');
 var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
@@ -51,10 +49,6 @@ function renderElements(element) {
   tdThree.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdThree.setAttribute('id', element.id);
   tdThree.textContent = '$' + Math.ceil(element.price * 100) / 100;
-  var tdFour = document.createElement('td');
-  tdFour.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
-  tdFour.setAttribute('id', element.id);
-  tdFour.textContent = '$' + Math.ceil(element.volume * 100) / 100;
   var tdFive = document.createElement('td');
   tdFive.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdFive.setAttribute('id', element.id);
@@ -105,7 +99,6 @@ function renderElements(element) {
   tdOne.appendChild(tdOneImage);
   trAppended.appendChild(tdTwo);
   trAppended.appendChild(tdThree);
-  trAppended.appendChild(tdFour);
   trAppended.appendChild(tdFive);
   trAppended.appendChild(tdSix);
   trAppended.appendChild(tdSeven);
@@ -121,11 +114,15 @@ function coinstatRequest() {
   xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhr.setRequestHeader('token', 'abc123');
   xhr.responseType = 'json';
+  xhr.addEventListener('error', function () {
+    'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+  });
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.coins.length; i++) {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
     }
+
     $spinner.style.display = 'none';
     // help save the coins API request
     coinSaves = xhr.response.coins;
@@ -588,9 +585,6 @@ $sortName.addEventListener('click', function (event) {
 $sortPrice.addEventListener('click', function (event) {
   priceSortColumn(2);
 });
-$sortVolume.addEventListener('click', function (event) {
-  priceSortColumn(3);
-});
 $sortCap.addEventListener('click', function (event) {
   priceSortColumn(4);
 });
@@ -662,11 +656,15 @@ function mobileCoinStatRequest() {
   xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
   xhrm.setRequestHeader('token', 'abc123');
   xhrm.responseType = 'json';
+  xhrm.addEventListener('error', function () {
+    'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+  });
   xhrm.addEventListener('load', function () {
     for (var i = 0; i < xhrm.response.coins.length; i++) {
       var test = mobileRenderElements(xhrm.response.coins[i]);
       $mobileAppended.append(test);
     }
+
     $mspinner.style.display = 'none';
   });
   xhrm.send();
