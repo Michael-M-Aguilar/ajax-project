@@ -1,5 +1,7 @@
 // Coinsaves serves as a storage for the coins API request.
 var coinSaves;
+// Used to store the index clicked later on.
+let index;
 // let dataSave;
 // Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
@@ -38,6 +40,7 @@ function renderElements(element) {
   tdOne.setAttribute('class', 'numbers padding-for-table clickable');
   tdOne.setAttribute('id', element.id + ' click');
   tdOne.textContent = element.rank;
+  var divOne = document.createElement('div');
   var tdOneImage = document.createElement('img');
   tdOneImage.setAttribute('src', element.icon);
   tdOneImage.setAttribute('class', 'logos clickable');
@@ -45,7 +48,10 @@ function renderElements(element) {
   var tdTwo = document.createElement('td');
   tdTwo.setAttribute('class', 'letters padding-for-table clickable');
   tdTwo.setAttribute('id', element.id);
-  tdTwo.textContent = element.name + ' ' + element.symbol;
+  tdTwo.textContent = element.name;
+  var divTwo = document.createElement('div');
+  divTwo.setAttribute('class', 'padding-top-sm');
+  divTwo.textContent = element.symbol;
   var tdThree = document.createElement('td');
   tdThree.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdThree.setAttribute('id', element.id);
@@ -97,7 +103,10 @@ function renderElements(element) {
     tdEight.className = 'losses';
   }
   trAppended.appendChild(tdOne);
-  tdOne.appendChild(tdOneImage);
+  // tdOne.appendChild(tdOneImage)
+  tdOne.appendChild(divOne);
+  divOne.appendChild(tdOneImage);
+  tdTwo.appendChild(divTwo);
   trAppended.appendChild(tdTwo);
   trAppended.appendChild(tdThree);
   trAppended.appendChild(tdFive);
@@ -457,16 +466,10 @@ function createClick(n) {
 // In Process of correcting the DOM.
 $cryptoView.addEventListener('click', function (event) {
   if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
-    const removed = document.getElementById('#removed');
     $tableView.className = 'container hidden-in-mobile';
-    // $cryptoView.removeChild(removed);
-    // while ($cryptoView.firstChild) {
-    //   $cryptoView.removeChild($cryptoView.firstChild);
-    // }
-    if (removed.parentNode) {
-      removed.parentNode.removeChild(removed);
+    while ($cryptoView.firstChild) {
+      $cryptoView.removeChild($cryptoView.firstChild);
     }
-    $cryptoView.className = 'crypto-hide';
   }
 });
 
@@ -482,7 +485,7 @@ $cancelDesktopButton.addEventListener('click', function (event) {
 });
 
 // Function to figure out what index to call for createClick
-let index;
+
 function idMatcher() {
   for (var i = 0; i < coinSaves.length; i++) {
     if (event.target.id === coinSaves[i].id) {
@@ -494,13 +497,13 @@ function idMatcher() {
 
 // Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
-  let testing;
+  let initiator;
 
   if (event.target.className === 'numbers text-align-center padding-for-table clickable' || event.target.className === 'letters padding-for-table clickable') {
     idMatcher();
-    testing = createClick(index);
+    initiator = createClick(index);
     $tableView.className = 'table-hide';
-    $appendCrypto.append(testing);
+    $appendCrypto.append(initiator);
   }
 });
 
@@ -620,7 +623,6 @@ function mobileCoinStatRequest() {
       var test = mobileRenderElements(xhrm.response.coins[i]);
       $mobileAppended.append(test);
     }
-
     $mspinner.style.display = 'none';
   });
   xhrm.send();
