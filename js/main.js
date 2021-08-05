@@ -1,5 +1,6 @@
 // Coinsaves serves as a storage for the coins API request.
 var coinSaves;
+// let dataSave;
 // Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
 var $appendCrypto = document.querySelector('.append-crypto');
@@ -24,8 +25,7 @@ var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
 var $queries = document.querySelector('.query-page');
-var $return = document.querySelector('.ret');
-const removed = document.querySelectorAll('#removed');
+// var $return = document.querySelector('.ret');
 var $cryptoView = document.getElementById('cryptoView');
 var $spinner = document.querySelector('.spinner');
 var $mspinner = document.querySelector('.mspinner');
@@ -130,6 +130,22 @@ function coinstatRequest() {
   });
   xhr.send();
 }
+
+// function bitcoinGraph() {
+//   var xhrb = new XMLHttpRequest();
+//   xhrb.open('GET', '');
+//   xhrb.responseType = 'json';
+//   xhrb.addEventListener('error', function () {
+//     'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+//   });
+//   xhrb.addEventListener('load', function () {
+//     for (var i = 0; i < xhrb.response.values; i++) {
+//       // var test = renderElements(xhr.response.coins[i]);
+//       // $appended.append(test);
+//     }
+//     dataSave = xhrb.response.values;
+//   });
+// }
 
 // Function to help sort names
 function nameSortColumn(a) {
@@ -439,10 +455,17 @@ function createClick(n) {
   return div;
 }
 // In Process of correcting the DOM.
-$return.addEventListener('click', function (event) {
+$cryptoView.addEventListener('click', function (event) {
   if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
+    const removed = document.getElementById('#removed');
     $tableView.className = 'container hidden-in-mobile';
-    $cryptoView.removeChild(removed);
+    // $cryptoView.removeChild(removed);
+    // while ($cryptoView.firstChild) {
+    //   $cryptoView.removeChild($cryptoView.firstChild);
+    // }
+    if (removed.parentNode) {
+      removed.parentNode.removeChild(removed);
+    }
     $cryptoView.className = 'crypto-hide';
   }
 });
