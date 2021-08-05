@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Top Cryptos Today</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -17,91 +17,80 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-  <div class="flex justify-center hiddenInMobile">
-    <div>
-      <img src="images/wsb chad 2.png" alt="wsbLogo">
-    </div>
-    <div class="backgroundBlue">
-      <h1>Top Cryptos Today</h1>
-    </div>
-    <div>
-      <img src="images/dogecoin 2.png" alt="doge">
-    </div>
+  <header class="container">
+  <div class="flex justify-center">
+    <h1 class="letter-header">Top Cryptos Today</h1>
   </div>
   </header>
   <main>
-    <div class="container hiddenInMobile" data-view="list-page">
-      <div class="forTable flex justify-center">
+    <div id="tableView" class="container hidden-in-mobile" data-view="list-page">
+      <div class="flex justify-center">
         <table id="desktopTable">
           <thead>
             <tr>
               <th class="letters">Rank <i class="fas fa-sort sort-rank"></i></th>
               <th class="letters">Name <i class="fas fa-sort sort-name"></i></th>
               <th class="letters">Price <i class="fas fa-sort sort-price"></i></th>
-              <th class="letters">24H Trading Volume <i class="fas fa-sort sort-volume"></i></th>
               <th class="letters">Market Cap <i class="fas fa-sort sort-cap"></i></th>
-              <th class="letters">Price Change 1H <i class="fas fa-sort sort-1h"></i></th>
-              <th class="letters">Price Change 24H <i class="fas fa-sort sort-24h"></i></th>
-              <th class="letters">Price Change 7D <i class="fas fa-sort sort-7d"></i></th>
+              <th class="letters max-width-numbers">Price Change 1H <i class="fas fa-sort sort-1h"></i></th>
+              <th class="letters max-width-numbers">Price Change 24H <i class="fas fa-sort sort-24h"></i></th>
+              <th class="letters max-width-numbers">Price Change 7D <i class="fas fa-sort sort-7d"></i></th>
               <th class="letters">Notes</th>
             </tr>
           </thead>
-          <tbody class="appended toggleModalOn">
+          <tbody class="appended toggle-modal-on query-page">
           </tbody>
         </table>
+        <div class="spinner">
+        </div>
       </div>
-      <div id="modal" class="modalContainerOff">
-        <div class="modalContent">
-          <div class="flex flex-column">
-            <div class="modalText">
+      <div id="modal" class="modal-container-off">
+        <div class="modal-content">
+          <div class="flex flex-column background-color">
+            <div>
               <h3 class="text-align-center">Insert private note below.</h3>
             </div>
             <form id="desktopForm">
-              <div class="textAreaDiv flex justify-center padding-bottom">
+              <div class="flex justify-center padding-bottom">
                 <label for="desktopNotes"></label>
-                <textarea id="desktopNotes" name="desktopNotes" class="desktopNotes" optional></textarea>
+                <textarea id="desktopNotes" name="desktopNotes" optional></textarea>
               </div>
-              <div class="buttons flex justify-center">
-                <button id="cancelDesktopModal" class="cancelButton cancelDesktopButton button textButton">CANCEL</button>
-                <button id="saveDesktopModal" type="submit" class="saveButton saveDesktopButton button textButton">SAVE</button>
+              <div class="buttons flex space-around">
+                <button id="cancelDesktopModal" class="cancel-button button">CANCEL</button>
+                <button id="saveDesktopModal" type="submit" class="save-button button">SAVE</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="container hiddenInDesktop mobileAppended toggleMobileModalOn" data-view="mobile-list-page">
-      <div class="mobileHeader flex justify-center">
-        <div>
-          <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
-        </div>
-        <div class="backgroundBlue">
-          <h1>Top Cryptos Today</h1>
-        </div>
-        <div>
-          <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
+    <div id="cryptoView" class="container append-crypto hidden-in-mobile ret">
+    </div>
+    <div id="mobileView" class="container hidden-in-desktop mobile-appended toggle-mobile-modal-on" data-view="mobile-list-page">
+      <div class="flex justify-center">
+        <div class="mspinner"></div>
+        <div id="mobileModal" class="mobile-modal-container-off hidden-in-desktop">
+          <div class="mobile-modal-content flex flex-column hidden-in-desktop">
+            <div class="align-center hidden-in-desktop">
+              <div>
+                <h3 class="text-align-center">Insert private note below.</h3>
+              </div>
+              <form id="mobileForm">
+                <div>
+                  <label for="mobileNotes"></label>
+                  <textarea id="mobileNotes" name="mobileNotes" optional></textarea>
+                </div>
+                <div class="align-center hidden-in-desktop flex space-around">
+                  <button id="cancelMobileModal" class="cancel-button button">CANCEL</button>
+                  <button type="submit" class="save-button button">SAVE</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div id="mobileModal" class="mobileModalContainerOff">
-      <div class="mobileModalContent flex flex-column">
-        <div class="textAreaDiv align-center hiddenInDesktop">
-          <div>
-            <h3 class="text-align-center">Insert private note below.</h3>
-          </div>
-        <form id="mobileForm">
-          <div>
-            <label for="mobileNotes"></label>
-            <textarea id="mobileNotes" name="mobileNotes" class="mobileNotes" optional></textarea>
-          </div>
-          <div class="buttons align-center hiddenInDesktop">
-            <button id="cancelMobileModal" class="cancelButton cancelMobileButton button textButton">CANCEL</button>
-            <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
-          </div>
-        </form>
-        </div>
-      </div>
+    <div id="mobileCryptoView" class="container append-mpage hidden-in-desktop ret">
     </div>
   </main>
   <script src="js/data.js"></script>

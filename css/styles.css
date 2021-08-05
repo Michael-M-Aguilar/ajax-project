@@ -1,3 +1,21 @@
+.container,
+html {
+  background-color: #fffaf3;
+}
+
+#cryptoView {
+  background-color: rgba(255, 255, 255, 0.63);
+}
+
+.tooltip {
+  visibility: hidden;
+}
+
+.tooltip:hover,
+.tooltiptext {
+  visibility: visible;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -8,12 +26,71 @@ thead {
 }
 
 td,
-.selector {
+.selector,
+.logoContainer {
   background-color: #f3f1f1;
 }
 
+.background-color {
+  background-color: white;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spinner {
+  opacity: 1;
+  transition: opacity linear 0.1s;
+}
+
+.spinner::before {
+  animation: 2s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #ef6565;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 90px;
+  will-change: transform;
+}
+
+.mspinner {
+  opacity: 1;
+  transition: opacity linear 0.1s;
+}
+
+.mspinner::before {
+  animation: 2s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #ef6565;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 90px;
+  will-change: transform;
+}
+
 h1 {
-  font-size: 38px;
+  font-size: 3rem;
 }
 
 td,
@@ -24,118 +101,142 @@ th,
 
 .numbers {
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
+}
+
+.letters {
+  font-family: 'Karla', sans-serif;
+  font-size: 1.4rem;
+}
+
+.letter-header {
+  font-family: 'Karla', sans-serif;
+  font-size: 4rem;
+}
+
+.max-width-numbers {
+  max-width: 120px;
 }
 
 .align-center {
   align-self: center;
 }
 
+.click-bot-top-pad {
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+}
+
+.padding-top-sm {
+  padding-top: 0.3rem;
+}
+
+.padding-top-med {
+  padding-top: 1.8rem;
+}
+
+.padding-bot-med {
+  padding-bottom: 1.5rem;
+}
+
+.padding-left-med {
+  padding-left: 2rem;
+}
+
 .padding-left {
-  padding-left: 50px;
+  padding-left: 2rem;
 }
 
 .padding-bottom {
-  padding-bottom: 10px;
+  padding-bottom: 0.7rem;
 }
 
-.paddingForTable {
-  padding: 0 12px 0 12px;
+.padding-for-table {
+  padding: 0 0.4rem 0 0.4rem;
 }
 
 .text-align-center {
   text-align: center;
 }
 
-.letters {
-  font-family: 'Karla', sans-serif;
-  font-size: 24px;
-}
-
-.saveButton {
+.save-button {
   background-color: #6dfd8a;
 }
 
-.cancelButton {
+.cancel-button {
   background-color: #f48d8d;
 }
 
 .button {
   border-radius: 14px;
   border: 0 solid;
-  width: 150px;
+  width: 35%;
   height: 40px;
-}
-
-.textButton {
   font-family: 'Work Sans', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 textarea {
   resize: none;
-  width: 350px;
+  width: 80%;
   height: 90px;
   border: 2px solid black;
 }
 
-.backgroundBlue {
-  background-color: #b6e7ff;
+/* Red/Green Feature on Numbers */
+.header-tendies {
+  text-align: center;
+  color: #00b424;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.6rem;
 }
 
-/* Red/Green Feature on Numbers */
 .tendies {
   text-align: center;
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .losses {
   text-align: center;
   color: #ff5964;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .neutral {
   text-align: center;
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
+}
+
+button,
+.fa-sticky-note,
+.clickable,
+#returnButton,
+.fa-sort {
+  cursor: pointer;
 }
 
 /* Mobile Related */
 
-.mobileChad {
-  width: 100px;
-  height: 90px;
-  align-self: flex-end;
-}
-
-.mobileDoge {
-  width: 100px;
-  height: 75px;
-  align-self: flex-end;
-}
-
-
 /* Red/Green feature for Mobile Only Numbers */
-
-.mobileTendies {
+.mobile-tendies {
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
-.mobileLosses {
+.mobile-losses {
   color: #ff5964;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
-.mobileNeutral {
+.mobile-neutral {
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
