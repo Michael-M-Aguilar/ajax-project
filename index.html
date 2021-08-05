@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Top Cryptos Today</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -18,21 +18,15 @@
 </head>
 <body>
   <header>
-  <div class="flex justify-center hidden-in-mobile backgroundColor">
+  <div class="flex justify-center hidden-in-mobile">
     <div>
-      <img src="images/wsb chad 2.png" alt="wsbLogo">
-    </div>
-    <div>
-      <h1>Top Cryptos Today</h1>
-    </div>
-    <div>
-      <img src="images/dogecoin 2.png" alt="doge">
+      <p class="letter-header">Top Cryptos Today</p>
     </div>
   </div>
   </header>
   <main>
     <div id="tableView" class="container hidden-in-mobile" data-view="list-page">
-      <div class="forTable flex justify-center">
+      <div class="flex justify-center">
         <table id="desktopTable">
           <thead>
             <tr>
@@ -47,59 +41,56 @@
               <th class="letters">Notes</th>
             </tr>
           </thead>
-          <tbody class="appended toggleModalOn queryPage">
+          <tbody class="appended toggle-modal-on query-page">
           </tbody>
         </table>
+        <div class="spinner">
+        </div>
       </div>
-      <div id="modal" class="modalContainerOff">
-        <div class="modalContent">
+      <div id="modal" class="modal-container-off">
+        <div class="modal-content">
           <div class="flex flex-column background-color">
-            <div class="modalText">
+            <div>
               <h3 class="text-align-center">Insert private note below.</h3>
             </div>
             <form id="desktopForm">
-              <div class="textAreaDiv flex justify-center padding-bottom">
+              <div class="flex justify-center padding-bottom">
                 <label for="desktopNotes"></label>
-                <textarea id="desktopNotes" name="desktopNotes" class="desktopNotes" optional></textarea>
+                <textarea id="desktopNotes" name="desktopNotes" optional></textarea>
               </div>
               <div class="buttons flex justify-center">
-                <button id="cancelDesktopModal" class="cancelButton cancelDesktopButton button textButton">CANCEL</button>
-                <button id="saveDesktopModal" type="submit" class="saveButton saveDesktopButton button textButton">SAVE</button>
+                <button id="cancelDesktopModal" class="cancel-button button">CANCEL</button>
+                <button id="saveDesktopModal" type="submit" class="save-button button">SAVE</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <div id="cryptoView" class="container appendCrypto hidden-in-mobile ret">
+    <div id="cryptoView" class="container append-crypto hidden-in-mobile ret">
     </div>
-    <div class="container hiddenInDesktop mobileAppended toggleMobileModalOn" data-view="mobile-list-page">
-      <div class="mobileHeader flex justify-center">
-        <div>
-          <img src="images/wsb chad 2.png" class="mobileChad" alt="wsbLogo">
-        </div>
+    <div class="container hidden-in-desktop mobile-appended toggle-mobile-modal-on" data-view="mobile-list-page">
+      <div class="flex justify-center">
         <div>
           <h1>Top Cryptos Today</h1>
         </div>
-        <div>
-          <img src="images/dogecoin 2.png" class="mobileDoge" alt="doge">
-        </div>
+        <div class="mspinner"></div>
       </div>
     </div>
-    <div id="mobileModal" class="mobileModalContainerOff">
+    <div id="mobileModal" class="mobile-modal-container-off">
       <div class="mobile-modal-content flex flex-column">
-        <div class="textAreaDiv align-center hiddenInDesktop">
+        <div class="align-center hidden-in-desktop">
           <div>
             <h3 class="text-align-center">Insert private note below.</h3>
           </div>
         <form id="mobileForm">
           <div>
             <label for="mobileNotes"></label>
-            <textarea id="mobileNotes" name="mobileNotes" class="mobileNotes" optional></textarea>
+            <textarea id="mobileNotes" name="mobileNotes" optional></textarea>
           </div>
-          <div class="buttons align-center hiddenInDesktop flex space-around">
-            <button id="cancelMobileModal" class="cancelButton cancelMobileButton button textButton">CANCEL</button>
-            <button type="submit" class="saveButton saveMobileButton button textButton">SAVE</button>
+          <div class="align-center hidden-in-desktop flex space-around">
+            <button id="cancelMobileModal" class="cancel-button button">CANCEL</button>
+            <button type="submit" class="save-button button">SAVE</button>
           </div>
         </form>
         </div>

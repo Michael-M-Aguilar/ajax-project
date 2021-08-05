@@ -3,10 +3,10 @@
 var coinSaves;
 // Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
-var $appendCrypto = document.querySelector('.appendCrypto');
-var $mobileAppended = document.querySelector('.mobileAppended');
-var $toggleModalOn = document.querySelector('.toggleModalOn');
-var $toggleMobileModal = document.querySelector('.toggleMobileModalOn');
+var $appendCrypto = document.querySelector('.append-crypto');
+var $mobileAppended = document.querySelector('.mobile-appended');
+var $toggleModalOn = document.querySelector('.toggle-modal-on');
+var $toggleMobileModal = document.querySelector('.toggle-mobile-modal-on');
 var $modal = document.getElementById('modal');
 var $tableView = document.getElementById('tableView');
 var $mobileModal = document.getElementById('mobileModal');
@@ -25,17 +25,18 @@ var $sortCap = document.querySelector('.sort-cap');
 var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
-var $queries = document.querySelector('.queryPage');
+var $queries = document.querySelector('.query-page');
 var $return = document.querySelector('.ret');
 var $cryptoView = document.getElementById('cryptoView');
+var $spinner = document.querySelector('.spinner');
+var $mspinner = document.querySelector('.mspinner');
 
 // THE START OF DESKTOP FUNCTIONS
-
 // Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
   var tdOne = document.createElement('td');
-  tdOne.setAttribute('class', 'numbers paddingForTable clickable');
+  tdOne.setAttribute('class', 'numbers padding-for-table clickable');
   tdOne.setAttribute('id', element.id);
   tdOne.textContent = element.rank;
   var tdOneImage = document.createElement('img');
@@ -43,37 +44,37 @@ function renderElements(element) {
   tdOneImage.setAttribute('class', 'logos clickable');
   tdOneImage.setAttribute('id', element.id);
   var tdTwo = document.createElement('td');
-  tdTwo.setAttribute('class', 'letters paddingForTable clickable');
+  tdTwo.setAttribute('class', 'letters padding-for-table clickable');
   tdTwo.setAttribute('id', element.id);
   tdTwo.textContent = element.name + ' ' + element.symbol;
   var tdThree = document.createElement('td');
-  tdThree.setAttribute('class', 'numbers text-align-center paddingForTable clickable');
+  tdThree.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdThree.setAttribute('id', element.id);
   tdThree.textContent = '$' + Math.ceil(element.price * 100) / 100;
   var tdFour = document.createElement('td');
-  tdFour.setAttribute('class', 'numbers text-align-center paddingForTable clickable');
+  tdFour.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdFour.setAttribute('id', element.id);
   tdFour.textContent = '$' + Math.ceil(element.volume * 100) / 100;
   var tdFive = document.createElement('td');
-  tdFive.setAttribute('class', 'numbers text-align-center paddingForTable clickable');
+  tdFive.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdFive.setAttribute('id', element.id);
   tdFive.textContent = '$' + Math.ceil(element.marketCap * 100) / 100;
   var tdSix = document.createElement('td');
-  tdSix.setAttribute('class', 'numbers text-align-center paddingForTable nodeList clickable');
+  tdSix.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdSix.setAttribute('id', 'element.id');
   tdSix.textContent = element.priceChange1h + '%';
   var tdSeven = document.createElement('td');
-  tdSeven.setAttribute('class', 'numbers text-align-center paddingForTable clickable');
+  tdSeven.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdSeven.setAttribute('id', element.id);
   tdSeven.textContent = element.priceChange1d + '%';
   var tdEight = document.createElement('td');
-  tdEight.setAttribute('class', 'numbers text-align-center paddingForTable clickable');
+  tdEight.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdEight.setAttribute('id', element.id);
   tdEight.textContent = element.priceChange1w + '%';
   var tdNine = document.createElement('td');
   tdNine.setAttribute('id', element.id);
   var tdNineSticky = document.createElement('i');
-  tdNineSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable margin-left-sm');
+  tdNineSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note padding-for-table margin-left-sm');
   tdNineSticky.setAttribute('id', element.id);
 
   // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
@@ -100,7 +101,6 @@ function renderElements(element) {
   } else {
     tdEight.className = 'losses';
   }
-
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
   trAppended.appendChild(tdTwo);
@@ -113,7 +113,6 @@ function renderElements(element) {
   trAppended.appendChild(tdNine);
   tdNine.appendChild(tdNineSticky);
   return trAppended;
-
 }
 
 // Function to make our API request, and then append our DOM tree to our targeted position.
@@ -127,6 +126,7 @@ function coinstatRequest() {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
     }
+    $spinner.style.display = 'none';
     // help save the coins API request
     coinSaves = xhr.response.coins;
   });
@@ -169,6 +169,7 @@ function nameSortColumn(a) {
     }
   }
 }
+
 // Function to help sort prices, volumes, and cap.
 function priceSortColumn(a) {
   var switching = true;
@@ -205,6 +206,7 @@ function priceSortColumn(a) {
     }
   }
 }
+
 // Function to help sort the Ranks
 function rankSortColumn(a) {
   var switching = true;
@@ -241,6 +243,7 @@ function rankSortColumn(a) {
     }
   }
 }
+
 // Function to help sort the %'s.
 function percentSortColumn(a) {
   var switching = true;
@@ -442,7 +445,6 @@ $return.addEventListener('click', function (event) {
     $tableView.className = 'container hidden-in-mobile';
     $cryptoView.className = 'crypto-hide';
   }
-  // console.log('Event logged: ', event.target.className);
 });
 
 // When the window loads, will load the coinstatRequest function.
@@ -452,7 +454,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 // Create addEventListener of Desktop Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
-  $modal.className = 'modalContainerOff';
+  $modal.className = 'modal-container-off';
   document.querySelector('#desktopForm').reset();
 });
 
@@ -463,111 +465,96 @@ $queries.addEventListener('click', function (event) {
     testing = createClick(0);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Bitcoin clicked!');
   }
   if (event.target.id === 'ethereum' && event.target.tagName !== 'I') {
     testing = createClick(1);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Ethereum clicked!');
   }
 
   if (event.target.id === 'tether' && event.target.tagName !== 'I') {
     testing = createClick(2);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Tether clicked!');
   }
 
   if (event.target.id === 'binance-coin' && event.target.tagName !== 'I') {
     testing = createClick(3);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Binance-coin clicked!');
   }
 
   if (event.target.id === 'cardano' && event.target.tagName !== 'I') {
     testing = createClick(4);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Cardano clicked!');
   }
 
   if (event.target.id === 'dogecoin' && event.target.tagName !== 'I') {
     testing = createClick(5);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('DOGE clicked!');
   }
 
   if (event.target.id === 'ripple' && event.target.tagName !== 'I') {
     testing = createClick(6);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('XRP clicked!');
   }
 
   if (event.target.id === 'usd-coin' && event.target.tagName !== 'I') {
     testing = createClick(7);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('usd-coin clicked!');
   }
 
   if (event.target.id === 'polkadot' && event.target.tagName !== 'I') {
     testing = createClick(8);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Polka clicked!');
   }
 
   if (event.target.id === 'bitcoin-cash' && event.target.tagName !== 'I') {
     testing = createClick(9);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-  // console.log('Bitcoin-cash clicked!');
   }
 
   if (event.target.id === 'uniswap' && event.target.tagName !== 'I') {
     testing = createClick(10);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-  // console.log('Uni clicked!');
   }
   if (event.target.id === 'litecoin' && event.target.tagName !== 'I') {
     testing = createClick(11);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
 
-    // console.log('Lite clicked!');
   }
 
   if (event.target.id === 'solana' && event.target.tagName !== 'I') {
     testing = createClick(12);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-    // console.log('Solana clicked!');
   }
 
   if (event.target.id === 'binance-usd' && event.target.tagName !== 'I') {
     testing = createClick(13);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-  // console.log('Binance clicked!');
   }
 
   if (event.target.id === 'chainlink' && event.target.tagName !== 'I') {
     testing = createClick(14);
     $tableView.className = 'table-hide';
     $appendCrypto.append(testing);
-  // console.log('Chain clicked!');
   }
 });
 
 // Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
-    $modal.className = 'modalContainerOn';
+    $modal.className = 'modal-container-on';
     data.currentCoin = event.target.getAttribute('id');
     for (var i = 0; i < data.entries.length; i++) {
       if (data.currentCoin === data.entries[i].coinID) {
@@ -587,7 +574,7 @@ $desktopForm.addEventListener('submit', function (event) {
   if (formData.note !== '') {
     data.entries.push(formData);
   }
-  $modal.className = 'modalContainerOff';
+  $modal.className = 'modal-container-off';
   document.querySelector('#desktopForm').reset();
 });
 
@@ -646,15 +633,15 @@ function mobileRenderElements(mobileElement) {
   h3Four.setAttribute('class', 'numbers');
   h3Four.textContent = mobileElement.priceChange1d + '%';
   var tdSticky = document.createElement('i');
-  tdSticky.setAttribute('class', 'toggleModalOn fas fa-sticky-note paddingForTable');
+  tdSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note padding-for-table');
   tdSticky.setAttribute('id', mobileElement.id);
 
   if (mobileElement.priceChange1d === 0) {
-    h3Four.className = 'mobileNeutral';
+    h3Four.className = 'mobile-neutral';
   } else if (mobileElement.priceChange1d > 0) {
-    h3Four.className = 'mobileTendies';
+    h3Four.className = 'mobile-tendies';
   } else {
-    h3Four.className = 'mobileLosses';
+    h3Four.className = 'mobile-losses';
   }
 
   divOne.appendChild(divTwo);
@@ -680,6 +667,7 @@ function mobileCoinStatRequest() {
       var test = mobileRenderElements(xhrm.response.coins[i]);
       $mobileAppended.append(test);
     }
+    $mspinner.style.display = 'none';
   });
   xhrm.send();
 }
@@ -691,14 +679,14 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 // Create addEventListener of Mobile Cancel Button
 $cancelMobileButton.addEventListener('click', function (event) {
-  $mobileModal.className = 'mobileModalContainerOff';
+  $mobileModal.className = 'mobile-modal-container-off';
   document.querySelector('#mobileForm').reset();
 });
 
 // Create addEventListener for Mobile Sticky Note Click
 $toggleMobileModal.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
-    $mobileModal.className = 'mobileModalContainerOn';
+    $mobileModal.className = 'mobile-modal-container-on';
     data.currentCoin = event.target.getAttribute('id');
     for (var i = 0; i < data.entries.length; i++) {
       if (data.currentCoin === data.entries[i].coinID) {
@@ -718,8 +706,7 @@ $mobileForm.addEventListener('submit', function (event) {
   if (formData.note !== '') {
     data.entries.push(formData);
   }
-  $mobileModal.className = 'mobileModalContainerOff';
-  // document.querySelector('#mobileForm').reset();
+  $mobileModal.className = 'mobile-modal-container-off';
 });
 
 // END OF MOBILE ONLY FUNCTIONS

@@ -47,7 +47,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .hiddenInDesktop {
+  .hidden-in-desktop {
     display: none;
   }
 }
@@ -83,7 +83,7 @@
   }
 }
 
-.modalContainerOn {
+.modal-container-on {
   display: inline;
   top: 0;
   left: 0;
@@ -93,17 +93,17 @@
   height: 100vh;
 }
 
-.modalContainerOff {
+.modal-container-off {
   display: none;
 }
 
-.modalContent {
+.modal-content {
   position: relative;
   top: 40%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  min-width: 50%;
+  max-width: 50%;
   min-height: 20%;
 }
 
@@ -113,11 +113,11 @@
   transform: translateX(-50%);
 }
 
-.mobileModalContainerOff {
+.mobile-modal-container-off {
   display: none;
 }
 
-.mobileModalContainerOn {
+.mobile-modal-container-on {
   display: inline;
   top: 30%;
   left: 19%;
@@ -129,9 +129,6 @@
 
 .mobile-modal-content {
   position: relative;
-
-  /* top: 40%;
-  left: 50%; */
   background-color: white;
   min-width: 50%;
   min-height: 20%;

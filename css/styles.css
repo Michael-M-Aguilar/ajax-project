@@ -22,6 +22,62 @@ td,
   background-color: white;
 }
 
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spinner {
+  /* The height here is just for demo purposes */
+  opacity: 1;
+  transition: opacity linear 0.1s;
+}
+
+.spinner::before {
+  animation: 2s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #ef6565;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 90px;
+  will-change: transform;
+}
+
+.mspinner {
+  /* The height here is just for demo purposes */
+  opacity: 1;
+  transition: opacity linear 0.1s;
+}
+
+.mspinner::before {
+  animation: 2s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #ef6565;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 90px;
+  will-change: transform;
+}
+
 h1 {
   font-size: 3rem;
 }
@@ -42,6 +98,11 @@ th,
   font-size: 1.4rem;
 }
 
+.letter-header {
+  font-family: 'Karla', sans-serif;
+  font-size: 3rem;
+}
+
 .align-center {
   align-self: center;
 }
@@ -58,19 +119,19 @@ th,
   padding-bottom: 10px;
 }
 
-.paddingForTable {
-  padding: 0 12px 0 12px;
+.padding-for-table {
+  padding: 0 1rem 0 1rem;
 }
 
 .text-align-center {
   text-align: center;
 }
 
-.saveButton {
+.save-button {
   background-color: #6dfd8a;
 }
 
-.cancelButton {
+.cancel-button {
   background-color: #f48d8d;
 }
 
@@ -79,16 +140,13 @@ th,
   border: 0 solid;
   width: 150px;
   height: 40px;
-}
-
-.textButton {
   font-family: 'Work Sans', sans-serif;
   font-size: 24px;
 }
 
 textarea {
   resize: none;
-  width: 100%;
+  width: 80%;
   height: 90px;
   border: 2px solid black;
 }
@@ -131,13 +189,13 @@ button,
 
 /* Mobile Related */
 
-.mobileChad {
+.mobile-chad {
   width: 100px;
   height: 90px;
   align-self: flex-end;
 }
 
-.mobileDoge {
+.mobile-doge {
   width: 100px;
   height: 75px;
   align-self: flex-end;
@@ -145,19 +203,19 @@ button,
 
 /* Red/Green feature for Mobile Only Numbers */
 
-.mobileTendies {
+.mobile-tendies {
   color: #00b424;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.4rem;
 }
 
-.mobileLosses {
+.mobile-losses {
   color: #ff5964;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.4rem;
 }
 
-.mobileNeutral {
+.mobile-neutral {
   color: black;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.4rem;
