@@ -128,7 +128,10 @@ function coinstatRequest() {
   xhr.setRequestHeader('token', 'abc123');
   xhr.responseType = 'json';
   xhr.addEventListener('error', function () {
-    'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+    var error = document.createElement('div');
+    error.setAttribute('class', 'letter-header');
+    error.textContent = 'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+    $spinner.append(error);
   });
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.coins.length; i++) {
@@ -639,7 +642,10 @@ function mobileCoinStatRequest() {
   xhrm.setRequestHeader('token', 'abc123');
   xhrm.responseType = 'json';
   xhrm.addEventListener('error', function () {
-    'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+    var error = document.createElement('div');
+    error.setAttribute('class', 'letter-header');
+    error.textContent = 'Sorry, there was an error connecting to the network. Please check your internet connection once again.';
+    $mobileView.append(error);
   });
   xhrm.addEventListener('load', function () {
     for (var i = 0; i < xhrm.response.coins.length; i++) {
