@@ -1,3 +1,3 @@
-# ajax-project
+# cryptotop
 
-A dynamic HTML, CSS, and JavaScript solo project.
+A web application for users who are interested in viewing the top cryptocurrencies.
