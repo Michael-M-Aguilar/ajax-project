@@ -1,16 +1,15 @@
-****Cryptotop*** is a web application for users who are interested in viewing the top cryptocurrencies.
+***Cryptotop*** is a web application for users who are interested in viewing the top cryptocurrencies.
 
 I've personally always had an interest in investing, and I began this project during the time when Crypto's were about to become popular. I figured it'd be a great project idea that already aligns with one of my interests. A live link of my project is located [here](https://michael-m-aguilar.github.io/cryptotop/). 
 
 Some of the technologies used for this project is: 
 * JavaScript
-* AJAX
 * CSS
 * Flexbox
 * HTML
 * jQuery
 * localStorage
-* API Requests via XML.
+* XHR Requests
 
 Using these technologies the features of this project were: 
 1. User can view a list of crypto's from the market.
