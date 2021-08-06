@@ -1,9 +1,5 @@
-// Coinsaves serves as a storage for the coins API request.
 var coinSaves;
-// Used to store the index clicked later on.
 let index;
-// let dataSave;
-// Where the DOM tree appends too.
 var $appended = document.querySelector('.appended');
 var $appendCrypto = document.querySelector('.append-crypto');
 var $appendMobileP = document.querySelector('.append-mpage');
@@ -29,19 +25,17 @@ var $sort1h = document.querySelector('.sort-1h');
 var $sort24h = document.querySelector('.sort-24h');
 var $sort7d = document.querySelector('.sort-7d');
 var $queries = document.querySelector('.query-page');
-// var $return = document.querySelector('.ret');
 var $cryptoView = document.getElementById('cryptoView');
 var $mobileCryptoView = document.getElementById('mobileCryptoView');
 var $spinner = document.querySelector('.spinner');
 var $mspinner = document.querySelector('.mspinner');
 
-// THE START OF DESKTOP FUNCTIONS
-// Function to create the DOM tree, as well as add their respective element property to the proper td.
 function renderElements(element) {
   var trAppended = document.createElement('tr');
+  trAppended.setAttribute('class', 'hovered');
   var tdOne = document.createElement('td');
   tdOne.setAttribute('class', 'numbers padding-for-table clickable');
-  tdOne.setAttribute('id', element.id + ' click');
+  tdOne.setAttribute('id', element.id);
   tdOne.textContent = element.rank;
   var divOne = document.createElement('div');
   var tdOneImage = document.createElement('img');
@@ -54,6 +48,7 @@ function renderElements(element) {
   tdTwo.textContent = element.name;
   var divTwo = document.createElement('div');
   divTwo.setAttribute('class', 'letters padding-for-table clickable');
+  divTwo.setAttribute('id', element.id);
   divTwo.textContent = element.symbol;
   var tdThree = document.createElement('td');
   tdThree.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
@@ -64,15 +59,12 @@ function renderElements(element) {
   tdFive.setAttribute('id', element.id);
   tdFive.textContent = '$' + Math.ceil(element.marketCap * 100) / 100;
   var tdSix = document.createElement('td');
-  tdSix.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdSix.setAttribute('id', element.id);
   tdSix.textContent = element.priceChange1h + '%';
   var tdSeven = document.createElement('td');
-  tdSeven.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdSeven.setAttribute('id', element.id);
   tdSeven.textContent = element.priceChange1d + '%';
   var tdEight = document.createElement('td');
-  tdEight.setAttribute('class', 'numbers text-align-center padding-for-table clickable');
   tdEight.setAttribute('id', element.id);
   tdEight.textContent = element.priceChange1w + '%';
   var tdNine = document.createElement('td');
@@ -81,29 +73,28 @@ function renderElements(element) {
   tdNineSticky.setAttribute('class', 'toggle-modal-on fas fa-sticky-note margin-left-sm');
   tdNineSticky.setAttribute('id', element.id);
 
-  // IF the priceChangeX is less than 0, turn Red, if greater than 0, turn green.
   if (element.priceChange1h === 0) {
-    tdSix.className = 'neutral';
+    tdSix.className = 'numbers text-align-center neutral clickable';
   } else if (element.priceChange1h > 0) {
-    tdSix.className = 'tendies';
+    tdSix.className = 'numbers text-align-center tendies clickable';
   } else {
-    tdSix.className = 'losses';
+    tdSix.className = 'numbers text-align-center losses clickable';
   }
 
   if (element.priceChange1d === 0) {
-    tdSeven.className = 'neutral';
+    tdSeven.className = 'neutral numbers text-align-center padding-for-table clickable';
   } else if (element.priceChange1d > 0) {
-    tdSeven.className = 'tendies';
+    tdSeven.className = 'tendies numbers text-align-center padding-for-table clickable';
   } else {
-    tdSeven.className = 'losses';
+    tdSeven.className = 'losses numbers text-align-center padding-for-table clickable';
   }
 
   if (element.priceChange1w === 0) {
-    tdEight.className = 'neutral';
+    tdEight.className = 'neutral numbers text-align-center padding-for-table clickable';
   } else if (element.priceChange1w > 0) {
-    tdEight.className = 'tendies';
+    tdEight.className = 'tendies numbers text-align-center padding-for-table clickable';
   } else {
-    tdEight.className = 'losses';
+    tdEight.className = 'losses numbers text-align-center padding-for-table clickable';
   }
   trAppended.appendChild(tdOne);
   tdOne.appendChild(tdOneImage);
@@ -121,7 +112,6 @@ function renderElements(element) {
   return trAppended;
 }
 
-// Function to make our API request, and then append our DOM tree to our targeted position.
 function coinstatRequest() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
@@ -138,15 +128,12 @@ function coinstatRequest() {
       var test = renderElements(xhr.response.coins[i]);
       $appended.append(test);
     }
-
     $spinner.style.display = 'none';
-    // help save the coins API request
     coinSaves = xhr.response.coins;
   });
   xhr.send();
 }
 
-// Function to help sort names
 function nameSortColumn(a) {
   var switching = true;
   var count = 0;
@@ -183,7 +170,6 @@ function nameSortColumn(a) {
   }
 }
 
-// Function to help sort prices, volumes, and cap.
 function priceSortColumn(a) {
   var switching = true;
   var count = 0;
@@ -220,7 +206,6 @@ function priceSortColumn(a) {
   }
 }
 
-// Function to help sort the Ranks
 function rankSortColumn(a) {
   var switching = true;
   var count = 0;
@@ -257,7 +242,6 @@ function rankSortColumn(a) {
   }
 }
 
-// Function to help sort the %'s.
 function percentSortColumn(a) {
   var switching = true;
   var count = 0;
@@ -294,7 +278,6 @@ function percentSortColumn(a) {
   }
 }
 
-// Function to create DOM tree when crypto is clicked
 function createClick(n) {
   var div = document.createElement('div');
   div.setAttribute('id', 'removed');
@@ -309,21 +292,21 @@ function createClick(n) {
   divTwo.setAttribute('class', 'align-center');
   var divTwoImage = document.createElement('img');
   divTwoImage.setAttribute('src', coinSaves[index].icon);
-  divTwoImage.setAttribute('class', 'align-center symbol-clicked');
+  divTwoImage.setAttribute('class', 'align-center symbol-clicked indiv-hover');
   var divThree = document.createElement('div');
   divThree.setAttribute('class', 'align-center');
   var firsth1 = document.createElement('h1');
-  firsth1.setAttribute('class', 'letters');
+  firsth1.setAttribute('class', 'letters indiv-hover');
   firsth1.textContent = coinSaves[index].name;
   var firsth3 = document.createElement('h3');
   firsth3.textContent = coinSaves[index].symbol;
-  firsth3.setAttribute('class', 'letters');
+  firsth3.setAttribute('class', 'letters indiv-hover');
   var divFour = document.createElement('div');
   divFour.setAttribute('class', 'align-center');
 
   var secondh3 = document.createElement('h3');
   secondh3.textContent = '$' + Math.ceil(coinSaves[index].price * 100) / 100;
-  secondh3.setAttribute('class', 'numbers');
+  secondh3.setAttribute('class', 'numbers indiv-hover');
   var thirdh3 = document.createElement('h3');
   thirdh3.textContent = coinSaves[index].priceChange1d + '%';
 
@@ -351,24 +334,21 @@ function createClick(n) {
     a3.setAttribute('class', 'margin-right-sm');
   }
   var iOne = document.createElement('i');
-  iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x margin-right-sm');
+  iOne.setAttribute('class', 'fab fa-twitter clicked-logos fa-4x margin-right-sm indiv-hover');
   var iTwo = document.createElement('i');
-  iTwo.setAttribute('class', 'fas fa-list fa-4x margin-right-sm');
+  iTwo.setAttribute('class', 'fas fa-list fa-4x margin-right-sm indiv-hover');
   var iThree = document.createElement('i');
-  iThree.setAttribute('class', 'fas fa-external-link-alt fa-4x margin-right-sm');
+  iThree.setAttribute('class', 'fas fa-external-link-alt fa-4x margin-right-sm indiv-hover');
   var divSix = document.createElement('div');
   divSix.setAttribute('class', 'body flex flex-wrap justify-center click-bot-top-pad');
   var divSeven = document.createElement('div');
   divSeven.setAttribute('class', 'graph flex justify-center padding-bot-med');
 
   var spanOne = document.createElement('span');
-  spanOne.setAttribute('class', 'numbers');
   spanOne.textContent = coinSaves[index].priceChange1h + '%';
   var spanTwo = document.createElement('span');
-  spanTwo.setAttribute('class', 'numbers');
   spanTwo.textContent = coinSaves[index].priceChange1d + '%';
   var spanThree = document.createElement('span');
-  spanThree.setAttribute('class', 'numbers');
   spanThree.textContent = coinSaves[index].priceChange1w + '%';
   var spanFour = document.createElement('span');
   spanFour.textContent = Math.ceil(coinSaves[index].marketCap * 100) / 100;
@@ -377,26 +357,31 @@ function createClick(n) {
   spanFive.setAttribute('class', 'numbers');
   spanFive.textContent = coinSaves[index].rank;
   var spanSix = document.createElement('span');
-  spanSix.setAttribute('class', 'numbers');
-  spanSix.textContent = coinSaves[index].totalSupply + ' ' + coinSaves[index].symbol;
+  if (coinSaves[index].totalSupply !== 0) {
+    spanSix.setAttribute('class', 'numbers');
+    spanSix.textContent = coinSaves[index].totalSupply + ' ' + coinSaves[index].symbol;
+  } else {
+    spanSix.setAttribute('class', 'letters');
+    spanSix.textContent = 'No Max-Supply known for the time being.';
+  }
 
   var pOne = document.createElement('p');
-  pOne.setAttribute('class', 'padding-left-med letters');
+  pOne.setAttribute('class', 'padding-left-med letters indiv-hover');
   pOne.textContent = 'Market Cap: ';
   var pTwo = document.createElement('p');
-  pTwo.setAttribute('class', 'padding-left-med letters');
+  pTwo.setAttribute('class', 'padding-left-med letters indiv-hover');
   pTwo.textContent = 'Price Change (1H): ';
   var pThree = document.createElement('p');
-  pThree.setAttribute('class', 'padding-left-med letters');
+  pThree.setAttribute('class', 'padding-left-med letters indiv-hover');
   pThree.textContent = 'Price Change (24H): ';
   var pFour = document.createElement('p');
-  pFour.setAttribute('class', 'padding-left-med letters');
+  pFour.setAttribute('class', 'padding-left-med letters indiv-hover');
   pFour.textContent = 'Price Change (7D): ';
   var pFive = document.createElement('p');
-  pFive.setAttribute('class', 'padding-left-med letters');
+  pFive.setAttribute('class', 'padding-left-med letters indiv-hover');
   pFive.textContent = 'Rank: ';
   var pSix = document.createElement('p');
-  pSix.setAttribute('class', 'padding-left-med letters');
+  pSix.setAttribute('class', 'padding-left-med letters indiv-hover');
   pSix.textContent = 'Max Supply Available: ';
 
   pOne.appendChild(spanFour);
@@ -443,13 +428,13 @@ function createClick(n) {
 
   if (coinSaves[index].priceChange1d === 0) {
     spanTwo.className = 'neutral';
-    thirdh3.className = 'neutral';
+    thirdh3.className = 'neutral numbers indiv-hover';
   } else if (coinSaves[index].priceChange1d > 0) {
     spanTwo.className = 'tendies';
-    thirdh3.className = 'header-tendies';
+    thirdh3.className = 'header-tendies numbers indiv-hover';
   } else {
     spanTwo.className = 'losses';
-    thirdh3.className = 'losses';
+    thirdh3.className = 'losses numbers indiv-hover';
   }
 
   if (coinSaves[index].priceChange1w === 0) {
@@ -463,18 +448,14 @@ function createClick(n) {
   return div;
 }
 
-// When the window loads, will load the coinstatRequest function.
 window.addEventListener('DOMContentLoaded', function (event) {
   coinstatRequest();
 });
 
-// Create addEventListener of Desktop Cancel Button
 $cancelDesktopButton.addEventListener('click', function (event) {
   $modal.className = 'modal-container-off';
   document.querySelector('#desktopForm').reset();
 });
-
-// Function to figure out what index to call for createClick
 
 function idMatcher() {
   for (var i = 0; i < coinSaves.length; i++) {
@@ -485,36 +466,14 @@ function idMatcher() {
   }
 }
 
-// Created addEventListener for clicking on a crypto for more info
 $queries.addEventListener('click', function (event) {
-  let initiator;
-  if (event.target.className === 'numbers text-align-center padding-for-table clickable' || event.target.className === 'letters padding-for-table clickable') {
+  if (event.target.id && event.target.tagName !== 'I') {
     idMatcher();
-    initiator = createClick(index);
     $tableView.className = 'table-hide';
-    $appendCrypto.append(initiator);
+    $appendCrypto.append(createClick(index));
   }
 });
 
-$mobileAppended.addEventListener('click', function (event) {
-  // let test;
-  if (event.target.id) {
-    idMatcher();
-    $mobileView.className = 'table-hide';
-    $appendMobileP.append(createClick(index));
-  }
-});
-
-$mobileCryptoView.addEventListener('click', function (event) {
-  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
-    $mobileView.className = 'container hidden-in-desktop';
-    while ($mobileCryptoView.firstChild) {
-      $mobileCryptoView.removeChild($mobileCryptoView.firstChild);
-    }
-  }
-});
-
-// In Process of correcting the DOM.
 $cryptoView.addEventListener('click', function (event) {
   if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
     $tableView.className = 'container hidden-in-mobile';
@@ -524,7 +483,6 @@ $cryptoView.addEventListener('click', function (event) {
   }
 });
 
-// Create addEventListener  for the sticky note click.
 $toggleModalOn.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     $modal.className = 'modal-container-on';
@@ -537,7 +495,6 @@ $toggleModalOn.addEventListener('click', function (event) {
   }
 });
 
-// Desktop Submit Listener.
 $desktopForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
@@ -551,7 +508,6 @@ $desktopForm.addEventListener('submit', function (event) {
   document.querySelector('#desktopForm').reset();
 });
 
-// Next several sorts are listeners to help sort the table.
 $sortRank.addEventListener('click', function (event) {
   rankSortColumn(0);
 });
@@ -574,10 +530,6 @@ $sort7d.addEventListener('click', function (event) {
   percentSortColumn(6);
 });
 
-// END OF DESKTOP FUNCTIONS
-
-// NEXT FUNCTIONS ARE FOR MOBILE ONLY
-// Function to create Mobile DOM Tree
 function mobileRenderElements(mobileElement) {
   var divOne = document.createElement('div');
   divOne.setAttribute('class', 'flex justify-center selector');
@@ -635,7 +587,6 @@ function mobileRenderElements(mobileElement) {
   return divOne;
 }
 
-// Function to make the API request, and append our DOM tree for mobile only.
 function mobileCoinStatRequest() {
   var xhrm = new XMLHttpRequest();
   xhrm.open('GET', 'https://api.coinstats.app/public/v1/coins?skip=0&limit=15&currency=USD');
@@ -657,18 +608,17 @@ function mobileCoinStatRequest() {
   xhrm.send();
 }
 
-// When the window loads, will load the mobileCoinStatRequest function
 window.addEventListener('DOMContentLoaded', function (event) {
   mobileCoinStatRequest();
 });
 
-// Create addEventListener of Mobile Cancel Button
 $cancelMobileButton.addEventListener('click', function (event) {
-  $mobileModal.className = 'mobile-modal-container-off';
-  document.querySelector('#mobileForm').reset();
+  if (event.target.id === 'cancelMobileModal') {
+    $mobileModal.className = 'mobile-modal-container-off';
+    document.querySelector('#mobileForm').reset();
+  }
 });
 
-// Create addEventListener for Mobile Sticky Note Click
 $toggleMobileModal.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     $mobileModal.className = 'mobile-modal-container-on';
@@ -681,7 +631,6 @@ $toggleMobileModal.addEventListener('click', function (event) {
   }
 });
 
-// Mobile Submit Listener
 $mobileForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formData = {
@@ -694,4 +643,21 @@ $mobileForm.addEventListener('submit', function (event) {
   $mobileModal.className = 'mobile-modal-container-off';
 });
 
-// END OF MOBILE ONLY FUNCTIONS
+$mobileAppended.addEventListener('click', function (event) {
+  if (event.target.id && event.target.tagName !== 'I') {
+    if (event.target.id !== 'cancelMobileModal') {
+      idMatcher();
+      $mobileView.className = 'table-hide';
+      $appendMobileP.append(createClick(index));
+    }
+  }
+});
+
+$mobileCryptoView.addEventListener('click', function (event) {
+  if (event.target.className === 'fas fa-arrow-alt-circle-left fa-3x') {
+    $mobileView.className = 'container hidden-in-desktop';
+    while ($mobileCryptoView.firstChild) {
+      $mobileCryptoView.removeChild($mobileCryptoView.firstChild);
+    }
+  }
+});
